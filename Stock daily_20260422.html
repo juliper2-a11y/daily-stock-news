@@ -8,7 +8,7 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; }
-.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px 20px 4px 20px; }
 h1 { text-align: center; color: #fff; font-size: 22px; margin-bottom: 4px; }
 .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 20px; }
 .legend-row { display: flex; gap: 18px; justify-content: center; margin-bottom: 18px; flex-wrap: wrap; }
@@ -190,6 +190,25 @@ function drawPanel(code, rank) {
   document.getElementById('panels').appendChild(wrap);
 }
 ORDER.forEach((code, i) => drawPanel(code, i+1));
+
+// 마지막 panel-wrap 하단 여백 제거
+const allPanels = document.querySelectorAll('.panel-wrap');
+if (allPanels.length > 0) {
+  const last = allPanels[allPanels.length - 1];
+  last.style.marginBottom = '0';
+  last.style.paddingBottom = '0';
+  last.style.borderBottom = 'none';
+}
+
+// 실제 콘텐츠 높이를 부모(iframe 삽입 페이지)에 전달
+function sendHeight() {
+  const h = document.body.scrollHeight;
+  if (window.parent !== window) {
+    window.parent.postMessage({ iframeHeight: h }, '*');
+  }
+}
+window.addEventListener('load', sendHeight);
+setTimeout(sendHeight, 800);
 </script>
 </body>
 </html>
