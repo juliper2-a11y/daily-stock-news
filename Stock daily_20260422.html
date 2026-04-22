@@ -7,7 +7,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background: #0f1117; color: #e0e0e0; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 0; }
 .container { max-width: 1200px; margin: 0 auto; padding: 20px 20px 4px 20px; }
 h1 { text-align: center; color: #fff; font-size: 22px; margin-bottom: 4px; }
 .subtitle { text-align: center; color: #888; font-size: 14px; margin-bottom: 20px; }
@@ -105,9 +105,15 @@ function drawPanel(code, rank) {
     <span class="panel-pct">+${PCTS[code]}%</span>
   </div>`;
   const chartDiv = document.createElement('div');
+  chartDiv.style.cssText = 'width:100%;line-height:0;font-size:0;';
   const svg = d3.select(chartDiv).append('svg')
     .attr('width','100%').attr('viewBox',`0 0 ${W} ${H}`)
-    .attr('preserveAspectRatio','xMidYMid meet');
+    .attr('preserveAspectRatio','xMidYMid meet')
+    .style('display','block')
+    .style('height', function() {
+      const w = chartDiv.getBoundingClientRect().width || 860;
+      return Math.round(w * H / W) + 'px';
+    });
   const g = svg.append('g').attr('transform',`translate(${margin.left},${margin.top})`);
   yS.ticks(5).forEach(t => {
     g.append('line').attr('x1',0).attr('x2',iW).attr('y1',yS(t)).attr('y2',yS(t))
