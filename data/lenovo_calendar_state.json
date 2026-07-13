@@ -1,0 +1,21 @@
+{
+  "events": {
+    "Lenovo 2026 Investor Day|Jun 25, 2026": {
+      "date": "Jun 25, 2026",
+      "title": "Lenovo 2026 Investor Day",
+      "url": "https://investor.lenovo.com/en/ir/calendar.php"
+    },
+    "Q3 Results Announcement (Q3 FY2025/26)|Feb 12, 2026": {
+      "date": "Feb 12, 2026",
+      "title": "Q3 Results Announcement (Q3 FY2025/26)",
+      "url": "https://doc.irasia.com/listco/hk/lenovo/interim/2026/int3q.pdf"
+    },
+    "Q4 Results Announcement (Q4 FY2025/26)|May 22, 2026": {
+      "date": "May 22, 2026",
+      "title": "Q4 Results Announcement (Q4 FY2025/26)",
+      "url": "https://doc.irasia.com/listco/hk/lenovo/annual/2026/res.pdf"
+    }
+  },
+  "initialized": true,
+  "last_updated": "2026-07-13 06:56 UTC"
+}
