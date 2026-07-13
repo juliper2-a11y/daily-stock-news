@@ -9,6 +9,7 @@
 | [Xiaomi IR 이벤트 캘린더](https://ir.mi.com/news-events/event-calendar) | 실적 발표, 주주총회 등 이벤트 |
 | [Sony IR 뉴스](https://www.sony.com/en/SonyInfo/IR/news/2026.html) | IR 뉴스 (연도 페이지는 자동으로 올해 것을 사용) |
 | [Dell 보도자료(IR)](https://investors.delltechnologies.com/news-events/press-release) | 보도자료 |
+| [Corning IR 뉴스](https://investor.corning.com/news-and-events/news/default.aspx) | IR 뉴스 |
 | [Lenovo IR 캘린더](https://investor.lenovo.com/en/ir/calendar.php) | 재무 캘린더 이벤트 |
 
 ### 동작 방식
