@@ -248,6 +248,95 @@ def parse_tables_and_links(page_html, page_url):
     return events
 
 
+# ---------------------------------------------------------------- Q4 플랫폼 API
+
+Q4_API_KEY_RE = re.compile(r"apiKey['\"]?\s*[:=]\s*['\"]([A-Fa-f0-9-]{16,64})['\"]")
+
+
+def q4_normalize_date(raw):
+    """Q4 API 날짜(/Date(ms)/ 또는 MM/DD/YYYY ...)를 YYYY-MM-DD 로 변환."""
+    raw = (raw or "").strip()
+    m = re.match(r"/Date\((\d+)", raw)
+    if m:
+        ts = int(m.group(1)) / 1000
+        return datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%d")
+    m = re.match(r"(\d{2})/(\d{2})/(\d{4})", raw)
+    if m:
+        return f"{m.group(3)}-{m.group(1)}-{m.group(2)}"
+    return raw
+
+
+def find_q4_api_key(page_html, page_url):
+    """페이지 본문, 없으면 datavars.js 류 외부 스크립트에서 apiKey 추출."""
+    from urllib.parse import urljoin
+
+    m = Q4_API_KEY_RE.search(page_html)
+    if m:
+        return m.group(1)
+    for src in re.findall(r"<script[^>]+src=['\"]([^'\"]+)", page_html):
+        if "datavars" not in src:
+            continue
+        try:
+            js = http_get(urljoin(page_url, src.replace("&amp;", "&"))).text
+        except RuntimeError as e:
+            print(f"datavars 스크립트 요청 실패: {e}", file=sys.stderr)
+            continue
+        m = Q4_API_KEY_RE.search(js)
+        if m:
+            return m.group(1)
+    return None
+
+
+def parse_q4_press_releases(page_html, page_url):
+    """Q4 위젯 사이트(뉴스 목록을 JS 로 로딩)의 보도자료 JSON API 호출."""
+    from urllib.parse import urljoin
+
+    api_key = find_q4_api_key(page_html, page_url)
+    if not api_key:
+        print("Q4 apiKey 를 찾지 못했습니다.", file=sys.stderr)
+        return []
+
+    api_url = urljoin(page_url, "/feed/PressRelease.svc/GetPressReleaseList")
+    params = {
+        "apiKey": api_key,
+        "pageSize": 25,
+        "pageNumber": 0,
+        "includeTags": "true",
+        "year": -1,
+        "excludeSelection": 1,
+    }
+    try:
+        resp = http_get(api_url, params=params)
+        data = resp.json()
+    except (RuntimeError, ValueError) as e:
+        print(f"Q4 API 호출 실패: {e}", file=sys.stderr)
+        return []
+
+    items = data.get("GetPressReleaseListResult") or []
+    if not items:
+        print(f"Q4 API 응답에 항목 없음: {str(data)[:500]}", file=sys.stderr)
+    events = []
+    for it in items:
+        title = (it.get("Headline") or "").strip()
+        if not title:
+            continue
+        date = q4_normalize_date(it.get("PressReleaseDate"))
+        link = it.get("LinkToDetailPage") or ""
+        events.append({
+            "key": f"{title}|{date}",
+            "title": title,
+            "date": date,
+            "url": urljoin(page_url, link) if link else page_url,
+        })
+    return events
+
+
+def parse_q4_site(page_html, page_url):
+    """Q4 API 우선, 실패 시 정적 HTML 파싱 폴백."""
+    return (parse_q4_press_releases(page_html, page_url)
+            or parse_tables_and_links(page_html, page_url))
+
+
 # ---------------------------------------------------------------- 소스별 설정
 
 def sony_urls():
@@ -287,7 +376,7 @@ SOURCES = [
         "id": "corning_news",
         "name": "Corning IR 뉴스",
         "urls": lambda: ["https://investor.corning.com/news-and-events/news/default.aspx"],
-        "parse": parse_tables_and_links,
+        "parse": parse_q4_site,
         "state_file": DATA_DIR / "corning_news_state.json",
     },
     {
