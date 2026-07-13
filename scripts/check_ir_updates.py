@@ -89,6 +89,29 @@ def find_date(text):
     return m.group(0) if m else ""
 
 
+# 링크 텍스트가 이런 문구면 제목이 아니므로 컨테이너에서 실제 제목을 찾는다
+GENERIC_LINK_TEXTS = {
+    "read more", "learn more", "more", "details", "view details", "view more",
+    "click here", "here", "webcast", "listen to webcast", "click here for webcast",
+    "download", "pdf", "presentation", "press release",
+}
+
+
+def derive_title(container, date_text):
+    """컨테이너 텍스트에서 날짜/상투어가 아닌 첫 줄을 제목으로 사용."""
+    for ln in container.get_text("\n").split("\n"):
+        ln = ln.strip()
+        if not ln or len(ln) < 6:
+            continue
+        if ln.lower() in GENERIC_LINK_TEXTS:
+            continue
+        without_date = ln.replace(date_text, "").strip() if date_text else ln
+        if not without_date or len(without_date) < 6:
+            continue
+        return without_date if without_date != ln else ln
+    return ""
+
+
 # ---------------------------------------------------------------- 범용 파서
 
 def parse_table_rows(page_html, page_url):
@@ -113,8 +136,12 @@ def parse_table_rows(page_html, page_url):
             if not lines:
                 continue
             title = lines[0]
-            link_el = tds[1].find("a", href=True) or tr.find("a", href=True)
-            link = urljoin(page_url, link_el["href"]) if link_el else ""
+            link = ""
+            for link_el in tds[1].find_all("a", href=True) + tr.find_all("a", href=True):
+                href = link_el["href"].strip()
+                if href and not href.startswith(("#", "javascript:", "mailto:")):
+                    link = urljoin(page_url, href)
+                    break
             events.append({
                 "key": f"{title}|{date_text}",
                 "title": title,
@@ -142,18 +169,23 @@ def parse_dated_links(page_html, page_url):
     for a in soup.find_all("a", href=True):
         title = a.get_text(" ", strip=True)
         href = a["href"].strip()
-        if not title or len(title) < 6 or href.startswith(("#", "javascript:", "mailto:")):
+        if not title or len(title) < 2 or href.startswith(("#", "javascript:", "mailto:")):
             continue
 
         date_text = ""
+        dated_container = None
         container = a.find_parent(["li", "tr", "dd", "article"])
         if container is not None:
             date_text = find_date(container.get_text(" ", strip=True))
-            if not date_text:
+            if date_text:
+                dated_container = container
+            else:
                 # <dt>날짜</dt><dd>링크</dd> 형태 지원
                 prev = container.find_previous_sibling()
                 if prev is not None:
                     date_text = find_date(prev.get_text(" ", strip=True))
+                    if date_text:
+                        dated_container = container
         if not date_text:
             # 조상으로 올라가며 날짜가 있는 작은 컨테이너 탐색 (Q4 모듈 div 등)
             node = a
@@ -165,8 +197,15 @@ def parse_dated_links(page_html, page_url):
                     break  # 페이지 전체 같은 큰 컨테이너는 제외
                 date_text = find_date(node.get_text(" ", strip=True))
                 if date_text:
+                    dated_container = node
                     break
         if not date_text:
+            continue
+
+        # "Read More" 같은 상투적 링크 텍스트면 컨테이너에서 실제 제목을 찾는다
+        if (title.lower() in GENERIC_LINK_TEXTS or len(title) < 6) and dated_container is not None:
+            title = derive_title(dated_container, date_text) or title
+        if len(title) < 6:
             continue
 
         url = urljoin(page_url, href)
@@ -249,6 +288,8 @@ SOURCES = [
         "urls": lambda: ["https://investor.lenovo.com/en/ir/calendar.php"],
         "parse": parse_tables_and_links,
         "state_file": DATA_DIR / "lenovo_calendar_state.json",
+        # 사이드바의 오래된 고정 링크(2008년 등)가 이벤트로 잡히지 않게 최근 항목만
+        "min_year": datetime.now(timezone.utc).year - 2,
     },
 ]
 
@@ -315,6 +356,12 @@ def process_source(src, now):
         raise RuntimeError(f"{src['name']}: 모든 URL 요청 실패: {last_err}")
 
     events = src["parse"](page_html, page_url)
+    min_year = src.get("min_year")
+    if min_year:
+        def recent(ev):
+            m = re.search(r"\b(19|20)\d{2}\b", ev["date"])
+            return m is None or int(m.group(0)) >= min_year
+        events = [ev for ev in events if recent(ev)]
     if not events:
         print(f"ERROR: {src['name']} 페이지에서 항목을 찾지 못했습니다.", file=sys.stderr)
         print_page_diagnostics(page_html)
