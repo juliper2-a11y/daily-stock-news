@@ -250,7 +250,65 @@ def parse_tables_and_links(page_html, page_url):
 
 # ---------------------------------------------------------------- Q4 플랫폼 API
 
-Q4_API_KEY_RE = re.compile(r"apiKey['\"]?\s*[:=]\s*['\"]([A-Fa-f0-9-]{16,64})['\"]")
+Q4_API_KEY_RE = re.compile(r"api[_-]?key['\"]?\s*[:=]\s*['\"]([\w-]{16,64})['\"]", re.I)
+
+
+def parse_rss_items(xml_text, page_url):
+    """RSS/Atom 피드에서 (제목, 날짜, 링크) 추출."""
+    import xml.etree.ElementTree as ET
+    from urllib.parse import urljoin
+
+    try:
+        root = ET.fromstring(xml_text.strip())
+    except ET.ParseError:
+        return []
+
+    ns = {"atom": "http://www.w3.org/2005/Atom"}
+    events = []
+    items = root.findall(".//item") or root.findall(".//atom:entry", ns)
+    for it in items:
+        def text(*tags):
+            for t in tags:
+                el = it.find(t, ns)
+                if el is not None and (el.text or "").strip():
+                    return el.text.strip()
+            return ""
+        title = text("title", "atom:title")
+        if not title:
+            continue
+        link = text("link")
+        if not link:
+            link_el = it.find("atom:link", ns)
+            if link_el is not None:
+                link = link_el.get("href", "")
+        raw_date = text("pubDate", "atom:updated", "atom:published")
+        date = find_date(raw_date) or raw_date[:16]
+        events.append({
+            "key": f"{title}|{date}",
+            "title": title,
+            "date": date,
+            "url": urljoin(page_url, link) if link else page_url,
+        })
+    return events
+
+
+def fetch_q4_rss(page_url):
+    """Q4 사이트의 일반적인 RSS 경로들을 시도."""
+    from urllib.parse import urljoin
+
+    for path in ("/rss/pressrelease.aspx", "/rss/news.aspx", "/rss/event.aspx"):
+        url = urljoin(page_url, path)
+        try:
+            resp = http_get(url)
+        except RuntimeError as e:
+            print(f"RSS 시도 실패 ({url}): {e}", file=sys.stderr)
+            continue
+        events = parse_rss_items(resp.text, page_url)
+        if events:
+            print(f"RSS 피드에서 {len(events)}건 발견 ({url})")
+            return events
+        print(f"RSS 응답에 항목 없음 ({url}): {resp.text[:200]!r}", file=sys.stderr)
+    return []
 
 
 def q4_normalize_date(raw):
@@ -284,6 +342,13 @@ def find_q4_api_key(page_html, page_url):
         m = Q4_API_KEY_RE.search(js)
         if m:
             return m.group(1)
+        # 진단: apikey 유사 문자열 문맥 출력
+        for hit in re.finditer(r"api", js, re.I):
+            start = max(0, hit.start() - 40)
+            print(f"--- 진단(datavars): …{js[start:hit.end() + 100]}…", file=sys.stderr)
+    for hit in list(re.finditer(r"apikey", page_html, re.I))[:3]:
+        start = max(0, hit.start() - 60)
+        print(f"--- 진단(page apikey): …{page_html[start:hit.end() + 120]}…", file=sys.stderr)
     return None
 
 
@@ -332,8 +397,9 @@ def parse_q4_press_releases(page_html, page_url):
 
 
 def parse_q4_site(page_html, page_url):
-    """Q4 API 우선, 실패 시 정적 HTML 파싱 폴백."""
-    return (parse_q4_press_releases(page_html, page_url)
+    """RSS → Q4 API → 정적 HTML 파싱 순서로 시도."""
+    return (fetch_q4_rss(page_url)
+            or parse_q4_press_releases(page_html, page_url)
             or parse_tables_and_links(page_html, page_url))
 
 
