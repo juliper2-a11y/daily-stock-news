@@ -189,6 +189,28 @@ def fetch_events_via_html(page_html):
     return events
 
 
+def print_page_diagnostics(page_html):
+    """이벤트 파싱 실패 시 사이트 구조 파악을 위한 진단 정보를 로그에 남긴다."""
+    print(f"--- 진단: HTML 길이 {len(page_html)}", file=sys.stderr)
+    m = re.search(r"<title[^>]*>(.*?)</title>", page_html, re.S | re.I)
+    print(f"--- 진단: <title> = {m.group(1).strip() if m else '(없음)'}", file=sys.stderr)
+    scripts = re.findall(r"<script[^>]+src=['\"]([^'\"]+)", page_html)
+    print(f"--- 진단: 외부 스크립트 {len(scripts)}개", file=sys.stderr)
+    for s in scripts[:30]:
+        print(f"    {s}", file=sys.stderr)
+    for keyword in ("apiKey", "api-key", "Event.svc", "q4", "calendar", "__NEXT_DATA__", "window."):
+        for hit in re.finditer(re.escape(keyword), page_html, re.I):
+            start = max(0, hit.start() - 60)
+            snippet = page_html[start:hit.end() + 120].replace("\n", " ")
+            print(f"--- 진단: '{keyword}' 문맥: …{snippet}…", file=sys.stderr)
+            break  # 키워드당 첫 번째 문맥만
+    body = re.sub(r"<script.*?</script>", " ", page_html, flags=re.S | re.I)
+    body = re.sub(r"<style.*?</style>", " ", body, flags=re.S | re.I)
+    text = re.sub(r"<[^>]+>", " ", body)
+    text = re.sub(r"\s+", " ", text).strip()
+    print(f"--- 진단: 본문 텍스트 앞 1500자:\n{text[:1500]}", file=sys.stderr)
+
+
 def load_state():
     if STATE_FILE.exists():
         with open(STATE_FILE, encoding="utf-8") as f:
@@ -234,6 +256,7 @@ def main():
     if not events:
         print("ERROR: 페이지에서 이벤트를 하나도 찾지 못했습니다. "
               "사이트 구조가 바뀌었거나 접근이 차단되었을 수 있습니다.", file=sys.stderr)
+        print_page_diagnostics(page_html)
         sys.exit(1)
 
     print(f"{len(events)}개 이벤트 발견 (source={source})")
