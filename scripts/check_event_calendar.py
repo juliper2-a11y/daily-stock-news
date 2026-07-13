@@ -15,10 +15,16 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
+
+try:
+    from curl_cffi import requests as cffi_requests
+except ImportError:
+    cffi_requests = None
 
 BASE_URL = "https://ir.mi.com"
 PAGE_URL = f"{BASE_URL}/news-events/event-calendar"
@@ -36,10 +42,35 @@ HEADERS = {
 }
 
 
+def http_get(url, params=None):
+    """WAF 우회를 위해 크롬 TLS 지문(curl_cffi)을 우선 사용하고, 재시도한다."""
+    last_err = None
+    for attempt in range(3):
+        if attempt:
+            time.sleep(10 * attempt)
+        if cffi_requests is not None:
+            try:
+                resp = cffi_requests.get(
+                    url, params=params, headers=HEADERS,
+                    impersonate="chrome", timeout=90,
+                )
+                resp.raise_for_status()
+                return resp
+            except Exception as e:  # noqa: BLE001 - curl_cffi 예외 계층이 별도
+                last_err = e
+                print(f"curl_cffi 시도 {attempt + 1} 실패: {e}", file=sys.stderr)
+        try:
+            resp = requests.get(url, params=params, headers=HEADERS, timeout=(15, 90))
+            resp.raise_for_status()
+            return resp
+        except requests.RequestException as e:
+            last_err = e
+            print(f"requests 시도 {attempt + 1} 실패: {e}", file=sys.stderr)
+    raise RuntimeError(f"{url} 요청 실패: {last_err}")
+
+
 def fetch_page_html():
-    resp = requests.get(PAGE_URL, headers=HEADERS, timeout=30)
-    resp.raise_for_status()
-    return resp.text
+    return http_get(PAGE_URL).text
 
 
 def parse_q4_date(raw):
@@ -77,10 +108,9 @@ def fetch_events_via_api(page_html):
         "includePressReleases": "true",
     }
     try:
-        resp = requests.get(api_url, params=params, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
+        resp = http_get(api_url, params=params)
         data = resp.json()
-    except (requests.RequestException, ValueError):
+    except (RuntimeError, ValueError):
         return None
 
     items = data.get("GetEventListResult") or []
