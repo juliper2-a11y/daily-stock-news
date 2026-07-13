@@ -1,6 +1,6 @@
 # daily-stock-news
 
-## IR 새소식 알림 (Xiaomi · Sony)
+## IR 새소식 알림
 
 아래 사이트에 새 항목이 올라오면 자동으로 알림을 받는 GitHub Actions 워크플로우입니다.
 
@@ -8,6 +8,8 @@
 |---|---|
 | [Xiaomi IR 이벤트 캘린더](https://ir.mi.com/news-events/event-calendar) | 실적 발표, 주주총회 등 이벤트 |
 | [Sony IR 뉴스](https://www.sony.com/en/SonyInfo/IR/news/2026.html) | IR 뉴스 (연도 페이지는 자동으로 올해 것을 사용) |
+| [Dell 보도자료(IR)](https://investors.delltechnologies.com/news-events/press-release) | 보도자료 |
+| [Lenovo IR 캘린더](https://investor.lenovo.com/en/ir/calendar.php) | 재무 캘린더 이벤트 |
 
 ### 동작 방식
 
@@ -29,7 +31,7 @@
 
 ### 수동 실행
 
-Actions 탭 → **IR 새소식 알림 (Xiaomi·Sony)** → **Run workflow** 버튼으로 즉시 확인할 수 있습니다.
+Actions 탭 → **IR 새소식 알림** → **Run workflow** 버튼으로 즉시 확인할 수 있습니다.
 
 ### 확인 주기 변경
 

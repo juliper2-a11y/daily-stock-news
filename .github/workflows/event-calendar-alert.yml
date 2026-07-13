@@ -1,4 +1,4 @@
-name: IR 새소식 알림 (Xiaomi·Sony)
+name: IR 새소식 알림
 
 on:
   schedule:

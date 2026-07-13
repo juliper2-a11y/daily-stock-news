@@ -4,6 +4,8 @@
 모니터링 대상 (SOURCES):
   - Xiaomi IR 이벤트 캘린더: https://ir.mi.com/news-events/event-calendar
   - Sony IR 뉴스:            https://www.sony.com/en/SonyInfo/IR/news/<연도>.html
+  - Dell 보도자료(IR):       https://investors.delltechnologies.com/news-events/press-release
+  - Lenovo IR 캘린더:        https://investor.lenovo.com/en/ir/calendar.php
 
 각 사이트에서 항목 목록을 가져와 data/ 아래 상태 파일과 비교하고,
 새 항목이 있으면 알림용 마크다운(notification.md)을 생성한다.
@@ -47,6 +49,9 @@ HEADERS = {
 MONTH_DATE_RE = re.compile(
     r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z.]* \d{1,2},? \d{4}"
 )
+DAY_FIRST_DATE_RE = re.compile(
+    r"\b\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z.]* \d{4}"
+)
 NUMERIC_DATE_RE = re.compile(r"\b\d{4}[./-]\d{1,2}[./-]\d{1,2}\b")
 
 
@@ -78,19 +83,21 @@ def http_get(url, params=None):
 
 
 def find_date(text):
-    m = MONTH_DATE_RE.search(text) or NUMERIC_DATE_RE.search(text)
+    m = (MONTH_DATE_RE.search(text)
+         or DAY_FIRST_DATE_RE.search(text)
+         or NUMERIC_DATE_RE.search(text))
     return m.group(0) if m else ""
 
 
-# ---------------------------------------------------------------- Xiaomi
+# ---------------------------------------------------------------- 범용 파서
 
-XIAOMI_BASE = "https://ir.mi.com"
-XIAOMI_URL = f"{XIAOMI_BASE}/news-events/event-calendar"
+def parse_table_rows(page_html, page_url):
+    """날짜 셀로 시작하는 테이블 행 파싱: 행 = [날짜 | 내용 | (자료)].
 
-
-def parse_xiaomi_events(page_html, page_url):
-    """Nasdaq IR(Drupal) 이벤트 테이블 파싱: 행 = [날짜 | 이벤트 | 자료]."""
+    ir.mi.com (Nasdaq IR) 이벤트 테이블 등에서 사용. 링크가 없는 행도 잡는다.
+    """
     from bs4 import BeautifulSoup
+    from urllib.parse import urljoin
 
     soup = BeautifulSoup(page_html, "html.parser")
     events = []
@@ -100,16 +107,14 @@ def parse_xiaomi_events(page_html, page_url):
             if len(tds) < 2:
                 continue
             date_text = tds[0].get_text(" ", strip=True)
-            if not MONTH_DATE_RE.search(date_text):
+            if not find_date(date_text):
                 continue
             lines = [ln.strip() for ln in tds[1].get_text("\n").split("\n") if ln.strip()]
             if not lines:
                 continue
             title = lines[0]
             link_el = tds[1].find("a", href=True) or tr.find("a", href=True)
-            link = link_el["href"] if link_el else ""
-            if link.startswith("/"):
-                link = XIAOMI_BASE + link
+            link = urljoin(page_url, link_el["href"]) if link_el else ""
             events.append({
                 "key": f"{title}|{date_text}",
                 "title": title,
@@ -119,22 +124,12 @@ def parse_xiaomi_events(page_html, page_url):
     return events
 
 
-# ---------------------------------------------------------------- Sony
+def parse_dated_links(page_html, page_url):
+    """날짜가 붙은 링크 목록을 일반적으로 파싱.
 
-SONY_BASE = "https://www.sony.com"
-
-
-def sony_urls():
-    """올해 뉴스 페이지 우선, 연초에 아직 없으면 작년 페이지로 폴백."""
-    year = datetime.now(timezone.utc).year
-    return [
-        f"{SONY_BASE}/en/SonyInfo/IR/news/{year}.html",
-        f"{SONY_BASE}/en/SonyInfo/IR/news/{year - 1}.html",
-    ]
-
-
-def parse_sony_news(page_html, page_url):
-    """날짜가 붙은 링크 목록을 일반적으로 파싱 (li/tr/dl 컨테이너 기준)."""
+    링크에서 가까운 컨테이너(li/tr/dd/article → 조상 순서)로 올라가며
+    날짜 텍스트를 찾는다. Sony IR 뉴스, Q4 플랫폼(모듈 div) 등에 대응.
+    """
     from bs4 import BeautifulSoup
     from urllib.parse import urljoin
 
@@ -147,19 +142,33 @@ def parse_sony_news(page_html, page_url):
     for a in soup.find_all("a", href=True):
         title = a.get_text(" ", strip=True)
         href = a["href"].strip()
-        if not title or len(title) < 6 or href.startswith(("#", "javascript:")):
+        if not title or len(title) < 6 or href.startswith(("#", "javascript:", "mailto:")):
             continue
-        container = a.find_parent(["li", "tr", "dd", "article"]) or a.parent
-        if container is None:
-            continue
-        date_text = find_date(container.get_text(" ", strip=True))
+
+        date_text = ""
+        container = a.find_parent(["li", "tr", "dd", "article"])
+        if container is not None:
+            date_text = find_date(container.get_text(" ", strip=True))
+            if not date_text:
+                # <dt>날짜</dt><dd>링크</dd> 형태 지원
+                prev = container.find_previous_sibling()
+                if prev is not None:
+                    date_text = find_date(prev.get_text(" ", strip=True))
         if not date_text:
-            # <dt>날짜</dt><dd>링크</dd> 형태 지원
-            prev = container.find_previous_sibling()
-            if prev is not None:
-                date_text = find_date(prev.get_text(" ", strip=True))
+            # 조상으로 올라가며 날짜가 있는 작은 컨테이너 탐색 (Q4 모듈 div 등)
+            node = a
+            for _ in range(5):
+                node = node.parent
+                if node is None or node.name in ("body", "html", "[document]"):
+                    break
+                if len(node.find_all("a", href=True)) > 6:
+                    break  # 페이지 전체 같은 큰 컨테이너는 제외
+                date_text = find_date(node.get_text(" ", strip=True))
+                if date_text:
+                    break
         if not date_text:
             continue
+
         url = urljoin(page_url, href)
         key = f"{title}|{date_text}"
         if key in seen:
@@ -169,22 +178,77 @@ def parse_sony_news(page_html, page_url):
     return events
 
 
+def parse_tables_and_links(page_html, page_url):
+    """테이블 행 + 날짜 링크 파싱을 합쳐 키 기준으로 중복 제거.
+
+    테이블 파서가 처리한(날짜 행이 있는) 테이블은 링크 파서 대상에서
+    제거해, 같은 행의 부속 링크(Webcast 등)가 별도 항목으로 잡히지 않게 한다.
+    """
+    from bs4 import BeautifulSoup
+
+    events = parse_table_rows(page_html, page_url)
+    remaining_html = page_html
+    if events:
+        soup = BeautifulSoup(page_html, "html.parser")
+        for table in soup.find_all("table"):
+            has_dated_row = any(
+                tds and find_date(tds[0].get_text(" ", strip=True))
+                for tr in table.find_all("tr")
+                if (tds := tr.find_all("td"))
+            )
+            if has_dated_row:
+                table.decompose()
+        remaining_html = str(soup)
+
+    seen = {ev["key"] for ev in events}
+    for ev in parse_dated_links(remaining_html, page_url):
+        if ev["key"] not in seen:
+            seen.add(ev["key"])
+            events.append(ev)
+    return events
+
+
+# ---------------------------------------------------------------- 소스별 설정
+
+def sony_urls():
+    """올해 뉴스 페이지 우선, 연초에 아직 없으면 작년 페이지로 폴백."""
+    year = datetime.now(timezone.utc).year
+    return [
+        f"https://www.sony.com/en/SonyInfo/IR/news/{year}.html",
+        f"https://www.sony.com/en/SonyInfo/IR/news/{year - 1}.html",
+    ]
+
+
 # ---------------------------------------------------------------- 소스 정의
 
 SOURCES = [
     {
         "id": "xiaomi_events",
         "name": "Xiaomi IR 이벤트 캘린더",
-        "urls": lambda: [XIAOMI_URL],
-        "parse": parse_xiaomi_events,
+        "urls": lambda: ["https://ir.mi.com/news-events/event-calendar"],
+        "parse": parse_table_rows,
         "state_file": DATA_DIR / "event_calendar_state.json",  # 기존 상태 파일 유지
     },
     {
         "id": "sony_ir_news",
         "name": "Sony IR 뉴스",
         "urls": sony_urls,
-        "parse": parse_sony_news,
+        "parse": parse_dated_links,
         "state_file": DATA_DIR / "sony_ir_news_state.json",
+    },
+    {
+        "id": "dell_press",
+        "name": "Dell 보도자료(IR)",
+        "urls": lambda: ["https://investors.delltechnologies.com/news-events/press-release"],
+        "parse": parse_tables_and_links,
+        "state_file": DATA_DIR / "dell_press_state.json",
+    },
+    {
+        "id": "lenovo_calendar",
+        "name": "Lenovo IR 캘린더",
+        "urls": lambda: ["https://investor.lenovo.com/en/ir/calendar.php"],
+        "parse": parse_tables_and_links,
+        "state_file": DATA_DIR / "lenovo_calendar_state.json",
     },
 ]
 
