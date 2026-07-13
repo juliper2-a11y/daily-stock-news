@@ -5,6 +5,7 @@
   - Xiaomi IR 이벤트 캘린더: https://ir.mi.com/news-events/event-calendar
   - Sony IR 뉴스:            https://www.sony.com/en/SonyInfo/IR/news/<연도>.html
   - Dell 보도자료(IR):       https://investors.delltechnologies.com/news-events/press-release
+  - Corning IR 뉴스:         https://investor.corning.com/news-and-events/news/default.aspx
   - Lenovo IR 캘린더:        https://investor.lenovo.com/en/ir/calendar.php
 
 각 사이트에서 항목 목록을 가져와 data/ 아래 상태 파일과 비교하고,
@@ -281,6 +282,13 @@ SOURCES = [
         "urls": lambda: ["https://investors.delltechnologies.com/news-events/press-release"],
         "parse": parse_tables_and_links,
         "state_file": DATA_DIR / "dell_press_state.json",
+    },
+    {
+        "id": "corning_news",
+        "name": "Corning IR 뉴스",
+        "urls": lambda: ["https://investor.corning.com/news-and-events/news/default.aspx"],
+        "parse": parse_tables_and_links,
+        "state_file": DATA_DIR / "corning_news_state.json",
     },
     {
         "id": "lenovo_calendar",
