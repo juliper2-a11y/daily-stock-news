@@ -133,12 +133,50 @@ def fetch_events_via_api(page_html):
     return events or None
 
 
+MONTH_DATE_RE = re.compile(
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2}, \d{4}"
+)
+
+
+def parse_table_events(soup):
+    """Nasdaq IR(Drupal) 이벤트 테이블 파싱: 행 = [날짜 | 이벤트 | 자료]."""
+    events = []
+    for table in soup.find_all("table"):
+        for tr in table.find_all("tr"):
+            tds = tr.find_all("td")
+            if len(tds) < 2:
+                continue
+            date_text = tds[0].get_text(" ", strip=True)
+            if not MONTH_DATE_RE.search(date_text):
+                continue
+            lines = [ln.strip() for ln in tds[1].get_text("\n").split("\n") if ln.strip()]
+            if not lines:
+                continue
+            title = lines[0]
+            link_el = tds[1].find("a", href=True) or tr.find("a", href=True)
+            link = link_el["href"] if link_el else ""
+            if link.startswith("/"):
+                link = BASE_URL + link
+            events.append({
+                "key": f"{title}|{date_text}",
+                "title": title,
+                "start": date_text,
+                "end": "",
+                "url": link or PAGE_URL,
+            })
+    return events
+
+
 def fetch_events_via_html(page_html):
-    """서버 렌더링된 HTML 에서 이벤트 파싱 (Q4 모듈 마크업 + 일반 폴백)."""
+    """서버 렌더링된 HTML 에서 이벤트 파싱 (이벤트 테이블 + Q4 모듈 + 일반 폴백)."""
     from bs4 import BeautifulSoup
 
     soup = BeautifulSoup(page_html, "html.parser")
-    events = []
+
+    # Nasdaq IR 플랫폼 (ir.mi.com 이 사용): 날짜/이벤트 테이블
+    events = parse_table_events(soup)
+    if events:
+        return events
 
     # Q4 웹사이트 모듈 마크업
     for item in soup.select(".module_item"):
