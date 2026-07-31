@@ -10,6 +10,11 @@
       "title": "Announcement Regarding the Future Business Direction of Sony Honda Mobility",
       "url": "https://www.sony.com/en/SonyInfo/IR/news/20260421_E.pdf"
     },
+    "Consolidated Financial Results for the First Quarter Ended June 30, 2026|July 31, 2026": {
+      "date": "July 31, 2026",
+      "title": "Consolidated Financial Results for the First Quarter Ended June 30, 2026",
+      "url": "https://www.sony.com/en/SonyInfo/IR/library/presen/er/archive.html"
+    },
     "Consolidated Financial Results for the Fiscal year Ended March 31, 2026|May 8, 2026": {
       "date": "May 8, 2026",
       "title": "Consolidated Financial Results for the Fiscal year Ended March 31, 2026",
@@ -110,6 +115,11 @@
       "title": "Q&A Summary of G&NS Small Meeting (6/5)",
       "url": "https://www.sony.com/en/SonyInfo/IR/news/20260629/"
     },
+    "Q1 FY2026 Earnings Announcement in Tokyo|July 31, 2026": {
+      "date": "July 31, 2026",
+      "title": "Q1 FY2026 Earnings Announcement in Tokyo",
+      "url": "https://www.sony.com/en/SonyInfo/IR/library/presen/er/"
+    },
     "Sony Corporation Announces Signing of Definitive Agreements for Strategic Partnership in the Home Entertainment Field with TCL Electronics Holdings Limited|March 31, 2026": {
       "date": "March 31, 2026",
       "title": "Sony Corporation Announces Signing of Definitive Agreements for Strategic Partnership in the Home Entertainment Field with TCL Electronics Holdings Limited",
@@ -137,5 +147,5 @@
     }
   },
   "initialized": true,
-  "last_updated": "2026-07-17 08:02 UTC"
+  "last_updated": "2026-07-31 06:08 UTC"
 }
