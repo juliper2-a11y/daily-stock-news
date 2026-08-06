@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>고용 구조 비교 — 창원과 광주, 직영과 협력사</title>
+<style>
+:root{
+  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#0B1118; --steel:#3E5166;
+  --rule:#C3CBD2; --lg:#D10049; --sg:#1B4AE0; --amber:#C97800; --ok:#148A54; --bad:#B3261E;
+  --serif:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; --sans:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',system-ui,sans-serif; --mono:'Malgun Gothic','맑은 고딕',Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
+
+header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,6vw,56px);line-height:1.18;margin:0 0 18px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--sg)}
+.standfirst{font-size:16px;max-width:62ch;color:#16222E}
+
+section{padding-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:6px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
+h2{font-family:var(--serif);font-size:clamp(23px,4vw,32px);font-weight:700;margin:0}
+.sec-sub{color:var(--steel);font-size:14px;margin:0 0 26px;max-width:64ch}
+h3{font-family:var(--serif);font-size:19px;margin:34px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+
+.correct{border:1px solid var(--amber);background:#F7F1E7;padding:18px 20px;margin:0 0 30px}
+.correct .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:8px}
+.correct p{font-size:14.5px;margin:0}
+.correct b{font-weight:700}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin-top:8px}
+.duo > div{padding:18px 20px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
+.duo > div:first-child{border-right:1px solid var(--rule);border-top:3px solid var(--lg)}
+.duo > div:last-child{border-top:3px solid var(--sg)}
+.duo h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.duo > div:first-child h4{color:var(--lg)} .duo > div:last-child h4{color:var(--sg)}
+.duo p{font-size:13.8px;margin:0 0 8px} .duo p:last-child{margin:0}
+.duo b{font-weight:700}
+
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
+th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:700;border-bottom:1px solid var(--ink)}
+td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:var(--steel)}
+.c-lg{color:var(--lg)} .c-sg{color:var(--sg)} .c-ok{color:var(--ok)} .c-bad{color:var(--bad)}
+.tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
+.est{color:var(--amber);font-size:11px;font-family:var(--mono)}
+
+.metric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0 10px}
+.metric div{border-top:2px solid var(--ink);padding-top:10px}
+.metric .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1;color:var(--sg)}
+.metric .k{font-size:12.5px;color:var(--steel);margin-top:4px}
+.metric .n.lg{color:var(--lg)}
+
+/* stack: 3-tier wage structure */
+.stack{border-top:2px solid var(--ink);margin-top:20px}
+.stack > div{padding:16px 18px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+.stack .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--steel)}
+.stack p{font-size:13.6px;margin:0}
+.stack > div:nth-child(1){border-left:3px solid var(--ok)}
+.stack > div:nth-child(2){border-left:3px solid var(--amber)}
+.stack > div:nth-child(3){border-left:3px solid var(--bad)}
+
+.thesis{font-family:var(--serif);font-size:clamp(19px,3vw,24px);line-height:1.6;margin:0 0 28px;max-width:40ch}
+.thesis span{color:var(--sg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pt{border-top:2px solid var(--ink);padding-top:12px}
+.pt h5{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.pt p{margin:0;font-size:13.4px;color:#16222E}
+
+.synth{margin-top:66px;border-top:2px solid var(--ink);padding-top:44px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--steel);line-height:1.8}
+footer b{font-weight:700;color:#202E3A}
+
+@media(max-width:720px){
+  .duo{grid-template-columns:1fr}
+  .duo > div:first-child{border-right:none}
+  .duo > div:last-child{border-top:3px solid var(--sg)}
+  .metric,.grid3{grid-template-columns:1fr;gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Employment Structure · 직영 / 자회사 / 협력사 · 광주 그린시티 vs 창원 스마트파크</div>
+  <h1>라인이 멈추면<br>충격은 <em>누구에게</em> 가는가</h1>
+  <p class="standfirst">
+    같은 '가전 공장 도시'지만 고용의 층이 다르게 쌓여 있다. 광주 삼성은 직영 3,400여 명 위에
+    수십 개 협력사·하도급의 생태계가 얹혀 있고, 라인이 해외로 옮겨질 때 충격은 직영이 아니라
+    이 생태계 층에 집중된다. LG는 서비스 인력 3,900명을 본사 정규직으로 직접 고용하는 등
+    고용을 회사 안으로 당겨온 이력이 있고, 창원은 라인 반출 자체가 없어 같은 충격이 실현된 적이 없다.
+    이 페이지는 그 구조를 수치와 함께 층별로 뜯어본다.
+  </p>
+</header>
+
+<!-- 00 정정 -->
+<section>
+  <div class="sec-head"><span class="sec-num">00</span><h2>먼저 바로잡을 것</h2></div>
+  <div class="correct">
+    <span class="lbl">Correction — "LG는 전부 본사 정직원이다"</span>
+    <p><b>그대로는 확인되지 않는 명제다.</b> LG 창원을 포함한 대형 제조 사업장에는 통상 사내외 협력사·도급
+    인력이 존재하며, LG도 예외라는 공개 근거는 없다. 검증 가능한 실제 차이는 세 가지다 —
+    ① <b>서비스 조직의 고용 방식</b>: LG는 협력사 소속이던 서비스 엔지니어 3,900명을 본사 정규직으로
+    직접 고용(2019), 삼성은 자회사(삼성전자서비스) 소속으로 전환(8,700명). ② <b>생산 라인 이동 리스크의
+    실현 여부</b>: 광주는 라인 해외 반출이 반복돼 협력사 충격이 실제로 발생했고, 창원은 반출 이력이 없다.
+    ③ <b>지역 생태계의 노출도</b>: 광주 가전 협력사 생태계는 삼성 물량에 대한 의존이 구조화되어 있다.
+    '전원 정직원 vs 협력사 천지'가 아니라 이 세 가지가 정확한 대비다.</p>
+  </div>
+</section>
+
+<!-- 01 광주의 구조 -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>광주의 고용 피라미드 — 숫자로</h2></div>
+  <p class="sec-sub">직영보다 생태계가 크다. 그래서 라인 이전의 충격도 생태계가 받는다.</p>
+
+  <div class="metric">
+    <div><div class="n">3,400여 명</div><div class="k">광주사업장 정규(직영) 인력 — 연매출 약 5조 원 규모 사업장</div></div>
+    <div><div class="n">80여 개사</div><div class="k">삼성 가전 협력사 중 호남권 소재 (전국 150개사의 절반 이상)</div></div>
+    <div><div class="n">100여 곳</div><div class="k">광주 1·2차 협력사 50여 곳 + 연계 하도급까지 포함한 생태계</div></div>
+  </div>
+
+  <p>광주사업장은 냉장고·에어컨 각 50만 대, 공기청정기 40만 대 등을 생산하는 삼성 국내 유일의
+  가전 기지다. 그러나 이 생산을 직영 3,400여 명이 전부 감당하는 것이 아니다 —
+  부품 납품, 사출·조립 도급, 물류까지 <b>수십 개 협력사의 인력이 생산 체인의 상당 부분을 채운다.</b>
+  지역 전체로 보면 협력사 층의 고용이 직영보다 크다는 것이 광주 지역 언론·경제계의 일관된 평가다.</p>
+
+  <h3>충격의 전달 경로 — 2024~25년 냉장고 라인 이전 사례</h3>
+  <table>
+    <thead><tr><th>구분</th><th>내용</th><th>충격의 귀속</th></tr></thead>
+    <tbody>
+      <tr><td>이전 결정</td><td>2024년 말, 구형 냉장고 2개 라인(연 45만 대, 매출 환산 약 6,000억 원)을 멕시코로 이전</td><td>—</td></tr>
+      <tr><td>직영 3,400명</td><td>일체형 세탁건조기·시스템에어컨 등 신규 물량을 광주에 배치해 라인 재배치로 흡수</td><td class="c-ok">고용 유지 — 충격 완충</td></tr>
+      <tr><td>협력사</td><td>업체별 매출 30~90% 감소 전망. 20년 된 협력사가 폐업을 결정한 사례 보도</td><td class="c-bad">직격 — 물량이 곧 생존</td></tr>
+      <tr><td>고용</td><td>협력사 층에서 1,000명 이상의 일자리 감소 전망</td><td class="c-bad">협력사 노동자에 집중</td></tr>
+      <tr><td>전례</td><td>2016년 세탁기 라인 베트남 이전 때도 같은 패턴 — "광주는 프리미엄 기지로" 선언과 동시에 볼륨 라인 반출</td><td class="c-bad">반복 구조</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">핵심 메커니즘: 본사는 라인 재배치라는 선택지가 있지만, 특정 라인 부품에 특화된 협력사에는 그 선택지가 없다. <b>거점 유연성(본사의 강점)과 물량 의존(협력사의 약점)은 같은 동전의 양면</b>이다.</p>
+</section>
+
+<!-- 02 서비스 조직 -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>가장 선명한 대비 — 서비스 엔지니어의 소속</h2></div>
+  <p class="sec-sub">생산이 아닌 서비스에서는 두 회사의 선택이 수치로 정확히 갈린다.</p>
+
+  <div class="duo">
+    <div>
+      <h4>LG — 본사 정규직 직접 고용</h4>
+      <p><b>2018년 11월 발표 → 2019년 5월 1일 입사.</b> 전국 130여 개 서비스센터의 협력사 소속
+      엔지니어 <b>3,900명을 LG전자 본사 정규직으로</b> 채용했다.</p>
+      <p>대상 엔지니어의 <b>98%가 입사</b>를 선택했고, 동일 조건 기준 임금이 <b>약 30% 상승</b>했다.
+      이로써 LG전자 국내 임직원은 처음으로 4만 명을 넘었다.</p>
+      <p>협력사 소속 → 본사 소속으로 층 자체를 올린 사례다.</p>
+    </div>
+    <div>
+      <h4>삼성 — 자회사 방식 전환</h4>
+      <p>삼성전자서비스 협력사 엔지니어 <b>8,700여 명을 자회사(삼성전자서비스) 정규직으로</b>
+      전환(2018 합의). 협력사보다는 안정되지만 <b>본사(삼성전자) 소속은 아니다.</b></p>
+      <p>임금·복지 체계도 삼성전자 본사가 아닌 자회사 기준을 따른다 — 3층 구조(본사·자회사·협력사)의
+      가운데 층이 유지되는 방식.</p>
+      <p>규모는 삼성이 2배 이상 크지만, 도달한 층이 다르다.</p>
+    </div>
+  </div>
+  <p class="tbl-note">이 대비가 중요한 이유: 같은 '정규직화'라는 단어가 두 회사에서 다른 층을 가리킨다. LG는 본사 직접 고용, 삼성은 자회사 고용 — 임금 테이블·성과급·복지의 기준선이 갈리는 지점이다.</p>
+</section>
+
+<!-- 03 3층 구조 -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>임금·복지의 3층 구조 — 광주에서 본 단면</h2></div>
+  <p class="sec-sub">'삼성전자 다니는 사람'이라는 말 안에 세 개의 층이 있다.</p>
+
+  <div class="stack">
+    <div>
+      <span class="t">1층 — 삼성전자 본사 정직원 (광주 직영 3,400여 명)</span>
+      <p>기본급 테이블은 전사 동일. 단, 성과급이 사업부 실적에 연동돼 <b>같은 정직원 안에서도 격차</b>가 크다 —
+      2025년 OPI 지급률: 반도체(DS) 연봉의 43~48% vs <b>생활가전(DA) 9~12%</b>.
+      2026년 상반기 TAI: 반도체 기본급의 최대 100% vs 생활가전 25%.
+      광주(DA 소속) 직원과 화성·평택(DS 소속) 직원의 연간 총보상 격차는 수천만 원~억대에 달할 수 있다.</p>
+    </div>
+    <div>
+      <span class="t">2층 — 자회사 소속 (예: 삼성전자서비스 8,700여 명)</span>
+      <p>고용은 안정됐지만 임금·복지는 본사가 아닌 자회사 기준. 본사 성과급(OPI·TAI) 체계의 바깥에 있다.
+      협력사 시절보다는 올라왔으나 1층과의 간극은 제도적으로 유지된다.</p>
+    </div>
+    <div>
+      <span class="t">3층 — 협력사·하도급 (광주 생태계 100여 곳, 지역 고용의 다수)</span>
+      <p>삼성의 임금 체계와 무관한 중소기업 임금 — 대기업 대비 격차는 통계로도 극명하다
+      (대기업 평균 월 942만 원 vs 중소기업 평균 176만 원 수준이라는 보도 기준).
+      여기에 <b>물량 리스크까지 이 층이 진다</b> — 2024년 라인 이전 때 매출 30~90% 감소와
+      1,000명+ 고용 축소가 모두 3층에서 발생했다. 임금은 가장 낮고 리스크는 가장 크다.</p>
+    </div>
+  </div>
+  <p class="tbl-note">월 942만/176만 원은 대기업(삼성전자 포함)·중소기업 평균 임금 비교 보도의 수치로, 광주 협력사만의 통계는 아니다 — 층간 격차의 규모감을 보여주는 참고치로 읽어야 한다.</p>
+</section>
+
+<!-- 04 창원 대비 -->
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>창원은 왜 같은 뉴스가 없나</h2></div>
+  <p class="sec-sub">창원에도 협력사는 있다. 다른 것은 협력사가 노출된 리스크의 크기다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>라인이 나간 적이 없다</h5><p>창원은 1976년 이후 가전 라인의 해외 반출 이력이 없다 — 볼륨 물량의 해외 이전은 해외 거점 신설·증설로 처리했고, 창원 자체는 8,000억 스마트파크 투자로 오히려 커졌다. '협력사 매출 급감' 뉴스가 구조적으로 나오기 어렵다.</p></div>
+    <div class="pt"><h5>부품이 사업장 안에 있다</h5><p>모터·컴프레서를 창원 부지 안에서 내재화해 외부 협력사 의존의 절대량 자체가 다르다. 협력사 생태계가 없는 게 아니라, 핵심 부품의 공급 충격이 회사 내부에서 흡수되는 구조다.</p></div>
+    <div class="pt"><h5>고용을 안으로 당긴 이력</h5><p>서비스 3,900명 본사 직고용(2019)은 '바깥 층을 안으로 올린' 결정이었다. 스마트파크 완공 후에도 생산직 신입 채용을 이어가고 있다. 자동화가 고용 축소가 아니라 재배치로 이어진 사례로 언론에 소개되는 배경이다.</p></div>
+  </div>
+
+  <p style="margin-top:26px;font-size:13.8px">
+    단, 공정한 비교를 위해 남겨둘 것 — 창원의 이 구조는 LG 가전이 <b>국내 생산을 유지할 만큼 이익을 내는
+    동안</b> 성립한다. 거점 이력 페이지에서 봤듯 LG도 볼륨존은 해외에서 만들며, 창원이 지금의 지위를 지키는
+    것은 도덕이 아니라 <b>수익 구조(프리미엄+부품 내재화)가 그것을 허용하기 때문</b>이다. 반대로 광주의 반복된
+    라인 반출도 삼성의 악의가 아니라 이익률 0~2%대(추정) 사업의 원가 계산 결과다 — 고용 구조의 차이는
+    결국 앞선 페이지들에서 본 사업 구조 차이의 그림자다.
+  </p>
+</section>
+
+<!-- 05 종합 -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">05</span><h2>종합</h2></div>
+  <p class="thesis">고용의 층이 다른 게 아니라, <span>리스크가 쌓이는 층</span>이 다르다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>광주의 요약</h5><p>직영 3,400명은 라인 재배치로 보호되는 반면, 협력사 100여 곳·수천 명의 생태계가 물량 이전 리스크를 정면으로 받는다. 2024년 사례가 그 구조의 실증이다 — 매출 -30~90%, 고용 -1,000명+.</p></div>
+    <div class="pt"><h5>LG의 요약</h5><p>'전원 정직원'은 아니지만, 서비스 3,900명 본사 직고용·창원 라인 무반출·부품 내재화로 고용 리스크를 회사 안쪽 층에서 흡수하는 방향성이 일관된다.</p></div>
+    <div class="pt"><h5>한 줄 결론</h5><p>같은 가전 공장 도시에서 창원의 리스크는 회사가 지고, 광주의 리스크는 생태계가 진다 — 이것이 임금·복지 격차보다 더 근본적인 두 도시의 차이다.</p></div>
+  </div>
+
+  <footer>
+    <b>출처</b> — 디지털광주문화대전(광주사업장 정규 인력 3,400여 명·생산량·매출), 드림투데이(호남권 협력사 80여 개사·광주 1·2차 50여 곳+하도급 100여 곳·이전 물량 45만 대=6,000억), 네이트뉴스·오마이뉴스(협력사 매출 30~90% 감소·1,000명+ 고용 축소·20년 협력사 폐업), 프레시안(직영 라인 재배치), 전자신문(2016 프리미엄 기지 선언), 이데일리·뉴데일리·한국경제·쿠키뉴스(LG 서비스 3,900명 직고용·98% 입사·임금 30% 상승·국내 4만 명 돌파·삼성전자서비스 8,700명 자회사 방식), 아주경제·파이낸셜뉴스·디지털타임스(OPI·TAI 사업부별 격차, 대·중소기업 임금 격차), 아시아투데이(창원 신사옥 채용).<br>
+    <b>불확실성</b> — 광주 협력사 인력의 정확한 총원과 사내협력사(라인 내 도급) 비중은 공시되지 않아 '생태계가 직영보다 크다'는 지역 언론·경제계 평가를 인용하는 데 그쳤다. LG 창원의 협력사 규모·직영 인원도 공개 수치를 확보하지 못해 정량 비교 대신 구조 비교로 처리했다. 월 942만/176만 원은 대기업·중소기업 평균 비교 보도 수치다. 협력사 매출 감소율·고용 감소치는 이전 결정 시점의 전망치로 실제 결과와 다를 수 있다.
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
