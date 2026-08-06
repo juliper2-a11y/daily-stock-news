@@ -4,24 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>제조경쟁력 비교 — LG 창원 vs 삼성 광주 (확장판)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#141C24; --steel:#6E7C8A;
-  --rule:#C3CBD2; --lg:#A50034; --sg:#1428A0; --amber:#B4762A; --ok:#2E6B4F;
-  --serif:'Gowun Batang',serif; --sans:'Noto Sans KR',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#0B1118; --steel:#3E5166;
+  --rule:#C3CBD2; --lg:#D10049; --sg:#1B4AE0; --amber:#C97800; --ok:#148A54;
+  --serif:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; --sans:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',system-ui,sans-serif; --mono:'Malgun Gothic','맑은 고딕',Consolas,monospace;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
 
 header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
 h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,6vw,58px);line-height:1.15;margin:0 0 18px;letter-spacing:-.01em}
 h1 em{font-style:normal;color:var(--lg)} h1 strong{font-weight:700;color:var(--sg)}
-.standfirst{font-size:16px;max-width:62ch;color:#2C3946}
+.standfirst{font-size:16px;max-width:62ch;color:#16222E}
 
 section{padding-top:60px}
 .sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:6px}
@@ -35,7 +32,7 @@ p{margin:0 0 14px}
 .correct{border:1px solid var(--amber);background:#F7F1E7;padding:18px 20px;margin:0 0 30px}
 .correct .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:8px}
 .correct p{font-size:14.5px;margin:0}
-.correct b{font-weight:500}
+.correct b{font-weight:700}
 
 /* two-col compare */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin-top:8px}
@@ -45,18 +42,18 @@ p{margin:0 0 14px}
 .duo h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
 .duo > div:first-child h4{color:var(--lg)} .duo > div:last-child h4{color:var(--sg)}
 .duo p{font-size:13.8px;margin:0 0 8px} .duo p:last-child{margin:0}
-.duo b{font-weight:500}
+.duo b{font-weight:700}
 
 table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
 th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
-th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:500;border-bottom:1px solid var(--ink)}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:700;border-bottom:1px solid var(--ink)}
 td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:var(--steel)}
 .c-lg{color:var(--lg)} .c-sg{color:var(--sg)}
 .tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
 
 .metric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0 10px}
 .metric div{border-top:2px solid var(--ink);padding-top:10px}
-.metric .n{font-family:var(--mono);font-size:26px;font-weight:600;line-height:1.1}
+.metric .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
 .metric .k{font-size:12.5px;color:var(--steel);margin-top:4px}
 .metric .n.lg{color:var(--lg)} .metric .n.sg{color:var(--sg)}
 
@@ -65,11 +62,11 @@ td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .pt{border-top:2px solid var(--ink);padding-top:12px}
 .pt h5{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;font-weight:700}
-.pt p{margin:0;font-size:13.4px;color:#2C3946}
+.pt p{margin:0;font-size:13.4px;color:#16222E}
 
 .synth{margin-top:66px;border-top:2px solid var(--ink);padding-top:44px}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--steel);line-height:1.8}
-footer b{font-weight:500;color:#3A4753}
+footer b{font-weight:700;color:#202E3A}
 
 @media(max-width:720px){
   .duo{grid-template-columns:1fr}
