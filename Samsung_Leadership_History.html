@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>삼성전자 가전 리더십 계보 — 역대 생활가전사업부장과 부문장</title>
+<style>
+:root{
+  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#0B1118; --steel:#3E5166;
+  --rule:#C3CBD2; --sg:#1B4AE0; --lg:#D10049; --amber:#C97800;
+  --serif:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; --sans:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',system-ui,sans-serif; --mono:'Malgun Gothic','맑은 고딕',Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
+
+header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,6vw,56px);line-height:1.18;margin:0 0 18px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--sg)}
+.standfirst{font-size:16px;max-width:62ch;color:#16222E}
+.legend{display:flex;gap:24px;flex-wrap:wrap;margin-top:28px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em}
+.legend span{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dot.da{background:var(--sg)} .dot.out{background:var(--amber)}
+
+section{padding-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:6px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
+h2{font-family:var(--serif);font-size:clamp(23px,4vw,32px);font-weight:700;margin:0}
+.sec-sub{color:var(--steel);font-size:14px;margin:0 0 26px;max-width:64ch}
+h3{font-family:var(--serif);font-size:19px;margin:34px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+
+.chain{
+  font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:#202E3A;
+  background:var(--paper-2);border:1px solid var(--rule);border-left:3px solid var(--sg);
+  padding:14px 18px;margin:0 0 8px;line-height:2;
+}
+.chain b{font-weight:700;color:var(--sg)}
+
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
+th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:700;border-bottom:1px solid var(--ink)}
+td:first-child{white-space:nowrap;font-weight:400}
+td.yr{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--steel)}
+tr.da td:first-child{color:var(--sg);font-weight:700}
+tr.da td:first-child::before{content:"● ";font-size:9px;vertical-align:1px}
+tr.out td:first-child{color:var(--amber);font-weight:700}
+tr.out td:first-child::before{content:"◆ ";font-size:9px;vertical-align:1px}
+.tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
+.est{color:var(--amber);font-size:11px;font-family:var(--mono)}
+
+.jump{
+  border:1px solid var(--rule);border-left:3px solid var(--sg);background:#fff;
+  padding:14px 18px;margin:10px 0;font-size:13.8px;
+}
+.jump .y{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--sg);display:block;margin-bottom:4px}
+.jump b{font-weight:700}
+
+.thesis{font-family:var(--serif);font-size:clamp(19px,3vw,24px);line-height:1.6;margin:0 0 28px;max-width:40ch}
+.thesis span{color:var(--sg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pt{border-top:2px solid var(--ink);padding-top:12px}
+.pt h5{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.pt p{margin:0;font-size:13.4px;color:#16222E}
+.synth{margin-top:66px;border-top:2px solid var(--ink);padding-top:44px}
+
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--steel);line-height:1.8}
+footer b{font-weight:700;color:#202E3A}
+
+@media(max-width:720px){
+  .grid3{grid-template-columns:1fr;gap:14px}
+  td.yr{white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Leadership Histories · 삼성전자 생활가전 · DA사업부장 / CE·DX부문장</div>
+  <h1>삼성의 가전 수장 자리는<br><em>사관학교가 아니라 순환 보직</em>이었다</h1>
+  <p class="standfirst">
+    LG에서 가전 본부장이 세 번 CEO로 직행하는 동안, 삼성의 생활가전(DA)사업부장 자리에서
+    CEO(부문장)로 올라간 사람은 없다. 오히려 TV·모바일에서 검증된 리더가 가전으로 '내려오거나'
+    (윤부근·김철기), 부문장이 사업부장을 직접 겸직해 공백을 메우는(윤부근·한종희) 패턴이 반복됐다.
+    가전 정통 출신이 사업부장을 거쳐 사장까지 오른 것은 이재승이 처음이자 유일했고, 그마저 중도 사임했다.
+  </p>
+  <div class="legend">
+    <span><i class="dot da"></i> 생활가전 정통 출신</span>
+    <span><i class="dot out"></i> 타 사업(TV·모바일) 출신 또는 부문장 겸직</span>
+    <span class="est">(추정) = 공개 자료로 확정 못한 연도</span>
+  </div>
+</header>
+
+<!-- 01 사업부장 -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>역대 생활가전(DA)사업부장</h2></div>
+  <p class="sec-sub">2010년대 이후 확인 가능한 계보. 삼성은 LG와 달리 가전 총괄 인사의 연속성이 약해, 겸직·공백 구간이 잦다.</p>
+
+  <div class="chain">
+    생활가전사업부(DA, Digital Appliances) — CE부문 소속(~2021) → <b>DX</b>부문 소속(2021.12 CE·IM 통합 이후)
+  </div>
+
+  <table>
+    <thead><tr><th>이름</th><th>재임</th><th>직급</th><th>출신·비고</th></tr></thead>
+    <tbody>
+      <tr><td>홍창완</td><td class="yr">2010 <span class="est">(추정)</span>~2012.12</td><td>부사장</td><td>지펠·하우젠 시절의 마지막 전담 사업부장. 이후 윤부근 체제로 흡수</td></tr>
+      <tr class="out"><td>윤부근</td><td class="yr">2012.12~2015.11</td><td>사장 (CE부문장 겸직)</td><td><b>TV(VD) 출신.</b> 'TV 신화' 주역이 가전 직접 지휘. "2015년 생활가전 세계 1위" 목표 선언 — 미달성. MPS 셀 생산 도입(2013)·셰프컬렉션(2014)이 이 시기</td></tr>
+      <tr><td>서병삼</td><td class="yr">2015.12~2019.12</td><td>부사장</td><td>윤부근의 겸직 해제로 선임. 무풍에어컨(2016)·애드워시 등 출시. 전장사업팀 신설과 같은 날 인사</td></tr>
+      <tr class="da"><td>이재승</td><td class="yr">2020.1~2022.10</td><td>부사장→사장(2021.12)</td><td><b>냉장고 개발 정통. 생활가전 출신 최초의 사장.</b> '프로젝트 프리즘'·비스포크 주도. 2022.10 돌연 사임</td></tr>
+      <tr class="out"><td>한종희</td><td class="yr">2022.10~2025.3</td><td>부회장 (DX부문장 겸직)</td><td><b>TV(VD) 출신.</b> 이재승 사임 후 부문장이 2년 5개월 직접 겸직. 2025.3 재임 중 별세</td></tr>
+      <tr class="out"><td>김철기</td><td class="yr">2025.4~현재</td><td>부사장</td><td><b>모바일(MX) 전략마케팅실장 출신.</b> 스마트폰·가전·TV 영업을 두루 거친 영업통. 2025.11 사장단 인사에서 유임 확정</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">홍창완 이전의 사업부장 계보(2000년대)는 공개 자료에서 연속적으로 특정하지 못했다. 12년(2012.12~2025.3) 가운데 약 5년 5개월이 부문장 겸직 체제였다는 점이 이 표의 핵심이다.</p>
+</section>
+
+<!-- 02 부문장 -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>그 위의 자리 — CE→DX 부문장 계보</h2></div>
+  <p class="sec-sub">가전이 소속된 세트 부문의 수장. 네 명 모두 TV 또는 모바일 출신이다 — 가전 출신은 한 명도 없다.</p>
+
+  <div class="chain">
+    CE부문(소비자가전: TV+생활가전, 2012 부문 체제) → <b>DX</b>부문(2021.12, CE+IM 통합: TV·가전·모바일·네트워크·의료기기)
+  </div>
+
+  <table>
+    <thead><tr><th>이름</th><th>재임</th><th>직급</th><th>출신·비고</th></tr></thead>
+    <tbody>
+      <tr class="out"><td>윤부근</td><td class="yr">2012.12~2017.10</td><td>사장·대표이사(2013.3~)</td><td>VD(TV)사업부장 출신. 2015.11까지 생활가전사업부장 겸직. 퇴임 후 CR담당 부회장</td></tr>
+      <tr class="out"><td>김현석</td><td class="yr">2017.11~2021.11</td><td>사장·대표이사</td><td>VD(TV)사업부장 출신. <b>비스포크 런칭(2019 '프로젝트 프리즘')기의 부문장</b></td></tr>
+      <tr class="out"><td>한종희</td><td class="yr">2021.12~2025.3</td><td>부회장·대표이사</td><td>VD(TV)사업부장 출신. CE+IM 통합 초대 DX부문장. 2022.10부터 DA사업부장 겸직. 재임 중 별세</td></tr>
+      <tr class="out"><td>노태문</td><td class="yr">2025.3(직무대행)→2025.11 정식~현재</td><td>사장·대표이사 내정</td><td><b>모바일(MX) 출신.</b> MX사업부장 겸직 유지. 한종희 별세 후 대행을 거쳐 2026년 사장단 인사에서 정식 선임</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 03 매핑 -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>사업부장 재임기의 부문장은 누구였나</h2></div>
+  <p class="sec-sub">두 계보를 겹치면 LG와의 차이가 선명해진다 — 위아래 모두 가전 출신이 앉은 기간이 사실상 없다.</p>
+
+  <table>
+    <thead><tr><th>사업부장</th><th>재임</th><th>같은 시기의 부문장</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>홍창완</td><td class="yr">2010 <span class="est">(추정)</span>~2012.12</td><td>부문 체제 성립 이전(최지성 대표이사 체제)</td><td>전담 사업부장의 마지막 구간</td></tr>
+      <tr><td>윤부근 (겸직)</td><td class="yr">2012.12~2015.11</td><td>본인 (CE부문장 겸 사업부장)</td><td>1차 겸직 체제 — TV 출신 부문장의 가전 직할 3년</td></tr>
+      <tr><td>서병삼</td><td class="yr">2015.12~2019.12</td><td>윤부근(~2017.10) → 김현석(2017.11~)</td><td>비스포크 출시(2019.6)는 이 임기 말 — 개발 주역은 후임 이재승</td></tr>
+      <tr><td>이재승</td><td class="yr">2020.1~2022.10</td><td>김현석(~2021.11) → 한종희(2021.12~)</td><td>비스포크 전성기와 정확히 겹침. 성공의 정점(사장 승진)과 사이클 붕괴가 한 임기에</td></tr>
+      <tr><td>한종희 (겸직)</td><td class="yr">2022.10~2025.3</td><td>본인 (DX부문장 겸 사업부장)</td><td>2차 겸직 체제 — 위기 국면의 비상 직할 2년 5개월</td></tr>
+      <tr><td>김철기</td><td class="yr">2025.4~현재</td><td>노태문(대행→정식)</td><td>모바일 출신 부문장 + 모바일 출신 사업부장 조합</td></tr>
+    </tbody>
+  </table>
+
+  <h3>두 번의 겸직이 말해주는 것</h3>
+  <div class="jump"><span class="y">2012.12</span><b>윤부근 겸직</b> — 공격의 겸직. TV 세계 1위를 만든 리더에게 가전도 1위로 만들라는 임무가 주어졌다. "2015년 생활가전 세계 1위" 목표는 달성되지 않았다.</div>
+  <div class="jump"><span class="y">2022.10</span><b>한종희 겸직</b> — 수습의 겸직. 비스포크 주역의 돌연 사임과 실적 급락이 겹치자 부문장이 직접 떠안았다. 후임 전담 사업부장(김철기)이 오기까지 2년 5개월이 걸렸다.</div>
+  <p style="font-size:13.8px">
+    LG에서 같은 기간 가전 본부장 자리는 조성진→송대현→류재철→백승태로 <b>공백 없이 전담자가 승계</b>됐고,
+    그중 두 명이 CEO가 됐다. 삼성에서 이 자리는 두 번, 합계 5년 반을 부문장 겸직으로 비워 두었다 —
+    같은 '가전 총괄'이라도 조직 내 무게가 달랐다는 가장 단단한 증거다.
+  </p>
+</section>
+
+<!-- 04 종합 -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">04</span><h2>인사 구조가 제품 전략을 설명한다</h2></div>
+  <p class="thesis">LG는 가전에서 <span>사람을 길렀고</span>, 삼성은 가전에 <span>사람을 보냈다.</span></p>
+
+  <div class="grid3">
+    <div class="pt"><h5>승계 방향의 차이</h5><p>LG: 세탁기 엔지니어가 30년을 올라와 본부장·CEO가 되는 상향 경로. 삼성: TV·모바일에서 성공한 리더가 가전으로 내려오는 하향 경로. 가전사업부장에서 부문장·CEO로 올라간 삼성 인사는 아직 없다.</p></div>
+    <div class="pt"><h5>전략에의 투영</h5><p>가전 외길 리더(LG)는 플랫폼·원가·생산 같은 장기 축적에 투자한다. TV·모바일 문법을 가진 리더(삼성)는 프리미엄 마케팅과 빠른 라인업 전환을 이식한다 — 비스포크는 이 인사 구조의 산물로 읽을 수 있다.</p></div>
+    <div class="pt"><h5>유일한 예외의 운명</h5><p>가전 정통으로 사장까지 오른 유일한 인물 이재승은 비스포크의 성공으로 승진했고, 그 구조가 재고 부담으로 돌변한 2022년에 물러났다. 예외의 등장과 퇴장이 모두 비스포크 사이클과 겹친다.</p></div>
+  </div>
+
+  <footer>
+    <b>출처</b> — 삼성 뉴스룸(2016 조직개편·서병삼 선임, 2024·2025 사장단 인사, DX부문 리더십 교체), ZDNet(2015 서병삼 프로필, 2025 사장단 명단), 전자신문·디지털데일리(2015.12 조직개편), 디지털데일리(2022.10 이재승 사임·한종희 겸직), 시사저널e(이재승 퇴사 배경), 뉴스핌(2025.4 김철기 프로필), 인더스트리뉴스·탑데일리(2025.11 노태문 정식 선임), 비즈니스포스트(윤부근 Who Is), 나무위키(한종희·윤부근).<br>
+    <b>불확실성</b> — 홍창완의 사업부장 취임 연도와 2000년대 사업부장 계보는 공개 자료로 연속 확정하지 못해 (추정) 표기. 윤부근의 생활가전 겸직 시작 시점은 2012.12 정기인사 기준이나 일부 자료는 2011년으로 기재해 차이가 있다. 노태문의 대표이사 등기는 2026.3 주총 절차 기준의 통상 추정. 김철기의 2025.4 선임은 한종희 별세에 따른 원포인트 인사로, 정기인사(2025.11)에서 유임이 확정됐다.
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
