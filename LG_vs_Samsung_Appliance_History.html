@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>백색가전 60년 — LG vs 삼성 사업 이력 비교 (검증판)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9ECEF;
+  --paper-2:#F4F6F7;
+  --ink:#141C24;
+  --steel:#6E7C8A;
+  --rule:#C3CBD2;
+  --lg:#A50034;
+  --sg:#1428A0;
+  --amber:#B4762A;
+  --ok:#2E6B4F;
+  --serif:'Gowun Batang',serif;
+  --sans:'Noto Sans KR',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-weight:300;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px 120px}
+
+/* ---------- hero ---------- */
+header.hero{padding:76px 0 44px;border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--steel);margin-bottom:26px;
+}
+h1{
+  font-family:var(--serif);font-weight:700;
+  font-size:clamp(34px,6.4vw,62px);line-height:1.14;margin:0 0 20px;
+  letter-spacing:-.01em;
+}
+h1 em{font-style:normal;color:var(--lg)}
+h1 strong{font-weight:700;color:var(--sg)}
+.standfirst{font-size:16px;max-width:62ch;color:#2C3946}
+.legend{
+  display:flex;gap:26px;flex-wrap:wrap;margin-top:30px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+}
+.legend span{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.dot.lg{background:var(--lg)}.dot.sg{background:var(--sg)}
+
+/* ---------- section ---------- */
+section{padding-top:64px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
+h2{font-family:var(--serif);font-size:clamp(24px,4vw,34px);font-weight:700;margin:0}
+.sec-sub{color:var(--steel);font-size:14px;margin:0 0 30px;max-width:64ch}
+
+/* ---------- timeline ---------- */
+.tl{position:relative;margin:0 0 8px}
+.tl::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:var(--rule);transform:translateX(-.5px);
+}
+.row{
+  display:grid;grid-template-columns:1fr 92px 1fr;
+  align-items:start;gap:0;padding:9px 0;
+}
+.yr{
+  font-family:var(--mono);font-size:12.5px;font-weight:500;
+  text-align:center;color:var(--ink);background:var(--paper);
+  padding:2px 0;position:relative;z-index:2;letter-spacing:.02em;
+}
+.card{
+  background:var(--paper-2);border:1px solid var(--rule);
+  padding:11px 14px;font-size:13.6px;line-height:1.62;position:relative;
+}
+.card b{font-weight:500}
+.card .tag{
+  display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;margin-bottom:4px;
+}
+.left .card{margin-right:20px;border-left:3px solid var(--lg)}
+.left .card .tag{color:var(--lg)}
+.right .card{margin-left:20px;border-left:3px solid var(--sg)}
+.right .card .tag{color:var(--sg)}
+.empty{min-height:1px}
+.first .card{background:#fff;box-shadow:0 1px 0 var(--rule)}
+.first .card b{font-weight:700}
+
+/* verification badges */
+.vf{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  position:absolute;top:8px;right:10px;
+}
+.vf.ok{color:var(--ok)}
+.vf.part{color:var(--amber)}
+.fix{
+  display:block;margin-top:6px;padding-top:5px;border-top:1px dashed var(--rule);
+  font-size:11.5px;color:var(--amber);
+}
+.fix::before{content:"✎ ";font-family:var(--mono)}
+
+/* gap marker */
+.gap{
+  grid-column:1/-1;text-align:center;font-family:var(--mono);
+  font-size:11px;letter-spacing:.16em;color:var(--amber);
+  padding:14px 0 10px;text-transform:uppercase;
+}
+.gap::before,.gap::after{content:"— ";opacity:.5}
+
+/* ---------- verdict ---------- */
+.verdict{
+  border-top:1px solid var(--rule);margin-top:26px;padding-top:20px;
+  display:grid;grid-template-columns:1fr 1fr;gap:26px;
+}
+.verdict h4{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 8px;color:var(--steel);
+}
+.verdict p{margin:0;font-size:14px}
+
+/* ---------- errata ---------- */
+.errata{
+  background:var(--paper-2);border:1px solid var(--rule);
+  border-left:3px solid var(--amber);padding:20px 24px;margin-top:8px;
+}
+.errata h3{
+  font-family:var(--mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 14px;color:var(--amber);font-weight:500;
+}
+.errata table{margin-top:0;font-size:13px}
+.errata td:first-child{white-space:normal;font-family:var(--sans);font-size:13px}
+del{color:var(--steel);text-decoration-color:var(--amber)}
+ins{text-decoration:none;font-weight:500}
+
+/* ---------- synthesis ---------- */
+.synth{margin-top:70px;border-top:2px solid var(--ink);padding-top:48px}
+.thesis{
+  font-family:var(--serif);font-size:clamp(19px,3vw,25px);line-height:1.6;
+  margin:0 0 34px;max-width:38ch;
+}
+.thesis span{color:var(--lg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pt{border-top:2px solid var(--ink);padding-top:12px}
+.pt h5{font-family:var(--serif);font-size:17px;margin:0 0 6px;font-weight:700}
+.pt p{margin:0;font-size:13.6px;color:#2C3946}
+
+table{width:100%;border-collapse:collapse;margin-top:34px;font-size:13.4px}
+th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
+th{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--steel);font-weight:500;
+  border-bottom:1px solid var(--ink);
+}
+td:first-child{font-family:var(--mono);font-size:12px;white-space:nowrap}
+.c-lg{color:var(--lg)}.c-sg{color:var(--sg)}
+.tbl-note{font-size:12px;color:var(--steel);margin-top:10px}
+
+footer{
+  margin-top:64px;padding-top:20px;border-top:1px solid var(--rule);
+  font-size:12px;color:var(--steel);line-height:1.8;
+}
+footer b{font-weight:500;color:#3A4753}
+
+@media(max-width:720px){
+  .tl::before{left:8px}
+  .row{grid-template-columns:1fr;gap:4px;padding:6px 0 14px}
+  .yr{text-align:left;padding-left:26px;background:none}
+  .left .card,.right .card{margin:0 0 0 26px}
+  .empty{display:none}
+  .verdict,.grid3{grid-template-columns:1fr;gap:18px}
+  .gap{text-align:left;padding-left:26px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Appliance Histories · 1965–2025 · 세탁기 / 냉장고 / 에어컨 · Fact-checked Edition</div>
+  <h1><em>금성</em>이 먼저 만들고<br><strong>삼성</strong>이 나중에 넓혔다</h1>
+  <p class="standfirst">
+    한국 백색가전의 세 축인 세탁기·냉장고·에어컨은 모두 금성사가 국내 최초로 생산했다.
+    삼성은 5~9년 늦게 진입해 규모와 브랜드로 따라붙었다. 이 문서는 세 카테고리를
+    같은 연표 위에 나란히 놓고, 격차가 언제 벌어지고 언제 좁혀졌는지를 본다.
+    이번 판은 전 항목을 언론 보도·공식 연혁·문화재 기록과 대조해 검증했고,
+    수정된 항목은 카드 안에 ✎ 표시로, 전체 목록은 하단 정오표에 남겼다.
+  </p>
+  <div class="legend">
+    <span><i class="dot lg"></i> LG전자 (금성사)</span>
+    <span><i class="dot sg"></i> 삼성전자 (삼성전자공업)</span>
+    <span style="color:var(--amber)">◆ 격차 구간</span>
+    <span style="color:var(--ok)">✓ 검증됨</span>
+    <span style="color:var(--amber)">△ 부분 확인 · ✎ 원문 수정</span>
+  </div>
+</header>
+
+<!-- ============ 세탁기 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>세탁기</h2></div>
+  <p class="sec-sub">모터 구조가 곧 브랜드가 된 카테고리. 격차의 핵심은 DD 도입 시점이 아니라 전 라인 표준화 시점이다.</p>
+
+  <div class="tl">
+    <div class="row first">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">국내 최초</span><b>백조세탁기 WP-181</b> — 알루미늄 몸체, 세탁용량 1.8kg, 세탁조·탈수조 분리형 2조 수동식. 2013년 8월 국가등록문화재 제562호 지정.<span class="fix">원문의 "세탁·탈수 1.8kg"은 공식 기록상 세탁용량만 확인됨</span></div></div>
+      <div class="yr">1969.5</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="gap">5년 공백 ◆ 금성 단독 시장</div>
+    </div>
+    <div class="row first">
+      <div class="left empty"></div>
+      <div class="yr">1974.12</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">진입</span>첫 세탁기 <b>SEW-200</b>(2kg 수동형 2조식) 생산. 같은 달 <b>한국반도체 인수</b> — 가전과 반도체 양대 축이 같은 시기에 시작됐다.</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">구조 전환</span><b>인버터 DD모터 상용화</b> — 세계 최초 세탁기 적용. 벨트·풀리를 제거하고 모터를 세탁조에 직결.</div></div>
+      <div class="yr">1998</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>드럼세탁기 출시 — 단, 모터 구조 차별화 없이 제품 형태로만 대응</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">브랜드</span>드럼세탁기 브랜드 <b>트롬(TROMM)</b> 런칭(2월) — 독일어 Trommel(드럼)에서 명명<span class="fix">원문 1999년 → 2002년. LG 보도자료('출시 10년' 2012)로 확정</span></div></div>
+      <div class="yr">2002</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">브랜드</span>프리미엄 통합 브랜드 <b>하우젠</b> 런칭(7월)<span class="fix">원문의 "2000년 디지털 세탁기 출시"는 근거를 찾지 못해 삭제</span></div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">시장</span>미국 드럼세탁기 <b>브랜드 매출 첫 1위</b> — 진출 4년 만, 스팀세탁기(2006)가 견인해 4위에서 수직 상승</div></div>
+      <div class="yr">2007</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">표준화</span><b>모터 10년 무상보증</b> 도입(7월 30일 생산분부터). 이 시점에 전자동(통돌이) 포함 전 모델 DD 적용 완료 — 보증 범위는 모터 한정.</div></div>
+      <div class="yr">2008.7</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2009.2</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">추격</span><b>DD모터 드럼세탁기 10년 무상보증</b> — 2008년 1월 제조분까지 소급 적용. 삼성의 드럼 DD 탑재가 늦어도 2008년임을 보여주는 근거.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2011.2</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>10kg 이상 <b>전자동 세탁기</b>로 10년 보증 확대 — 삼성 스스로 이 라인을 "일반모터"(벨트 등 간접구동)로 설명. 통돌이의 DD 전환은 이 시점에도 미완.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2012</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">기술</span>세계 최초 가전용 <b>고속 스포크 모터</b> 개발. 자체 실험 기준 기존 DD 대비 소비전력·세탁효율 18~19% 개선, 독일 VDE 23년 수명 인증.</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>세계 최초 드럼 하단에 통돌이를 결합한 <b>트윈워시</b>(7월 공개, 9월 판매)</div></div>
+      <div class="yr">2015</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><b>애드워시</b>(9월) — 세탁 중 투입구. 같은 해 두 회사가 '세탁 도중 개입'이라는 같은 문제를 다른 구조로 풀었다.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2018</div>
+      <div class="right"><div class="card"><span class="vf part">△</span><span class="tag">라인업 공개</span>디지털 인버터 모터 체계 공표 — <b>DD(중대형 드럼) / DD 플러스(전자동, DD+기어) / 스포크</b>. LG보다 다층적이나 소비자 인지에는 닿지 못한 분류.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2021~22</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>국내 2021년형 비스포크부터 모터·컴프레서 <b>평생 보증</b>, 2022년 9월 IFA에서 유럽 <b>20년 보증</b> 발표<span class="fix">원문 "2023년 20년 보증" → 국내 평생보증 2021, 유럽 20년 2022로 정정</span></div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>인버터 DD모터 <b>누적 생산 1억 1,200만 대</b>(2023년 2월 말 기준) — 1998년 이후 25년, 일평균 약 1만 2천 대. 건조기까지 확대 적용.</div></div>
+      <div class="yr">2023.3</div>
+      <div class="right empty"></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div><h4>LG의 축</h4><p>1998년 단일 구조를 채택하고 25년간 같은 이야기를 반복했다. 2008년 드럼·통돌이 전 라인을 DD로 통일한 것이 결정적이다. 소비자에게는 "LG는 전부 DD"라는 단일 명제가 남았다.</p></div>
+    <div><h4>삼성의 축</h4><p>드럼 DD는 늦어도 2008년에 확보했지만 별도 브랜딩 없이 '디지털 인버터' 우산 아래 흡수시켰고, 통돌이는 2011년까지도 벨트식이 남아 있었다. 기술은 따라잡았으나 서사는 만들지 못했다. 평생·20년 보증은 그 서사를 다시 짜려는 시도다.</p></div>
+  </div>
+</section>
+
+<!-- ============ 냉장고 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>냉장고</h2></div>
+  <p class="sec-sub">세탁기와 정반대. 프리미엄 양문형 판을 삼성이 먼저 열었고 LG가 1년 만에 따라붙었다 — 그리고 그 1년의 응수 속도가 이 카테고리를 혼전으로 만들었다.</p>
+
+  <div class="tl">
+    <div class="row first">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">국내 최초</span><b>금성 냉장고 GR-120</b>('눈표') — 냉장·냉동 일체형 120L, 출시가 8만 600원. 초도 물량 단기 완판, 2013년 국가등록문화재 지정.<span class="fix">원문의 "4월" 월 표기는 공식 기록에서 확인 불가해 제외</span></div></div>
+      <div class="yr">1965</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row"><div class="gap">9년 공백 ◆ 세 카테고리 중 최장</div></div>
+    <div class="row first">
+      <div class="left empty"></div>
+      <div class="yr">1974.2</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">진입</span>첫 냉장고 <b>SR-180</b> 생산 — 자동 서리 제거를 처음부터 구현.<span class="fix">원문의 "1972년설"은 뒷받침 자료 없음(삼성 공식 연혁 1974). '하이콜드'는 초기 브랜드가 아니라 1976년 절전형부터 사용</span></div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">1976</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>절전형 <b>'하이콜드'</b> 출시, "성에 없는 냉장고" 광고전 개시 — 금성 눈표가 '전자동'(1977)으로 응수하며 1978년까지 최초의 정면 광고전 전개</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">1980</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>국내 최초 <b>수직형 3도어</b> 야채실 독립냉장고. 국내 생산량 1982년 39.7만 대 → 1987년 111.6만 대로 급증.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">1997</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">판을 연 쪽</span><b>지펠(Zipel)</b> — 세계 최초 독립냉각 양문형. 외산이 장악하던 프리미엄 시장을 개척해 1년 만에 국내 1위. 브랜드명은 독일어 Gipfel(정상)에서.</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">대응</span>지펠에 맞서 <b>디오스(DIOS)</b> 출시 — Deluxe·Intelligent·Optimum·Silent. 응수까지 걸린 시간 약 1년.<span class="fix">원문 1999년 → LG 공식('디오스 20주년' 2018) 기준 1998년으로 정정</span></div></div>
+      <div class="yr">1998</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>인테리어 양문형 — 디자인 강조형으로 후속 확장</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>세계 최초 <b>인터넷 디지털 디오스</b>(6월) — 냉장고에 통신을 넣은 첫 시도. 패밀리허브보다 16년 앞섰지만 시장은 아직 준비되지 않았다.</div></div>
+      <div class="yr">2000</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2005</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>세계 최초 <b>4도어·4독립냉각</b> '지펠 콰트로'(707L) — 북미 시장 출시, 타임지 '꼭 사야 할 기기' 선정<span class="fix">국내가 아닌 북미 출시로 명기</span></div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>세계 최초 <b>얼음정수기 냉장고</b>(8월, 855L) — 저장에서 급수 기능으로 확장</div></div>
+      <div class="yr">2013</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><b>노크온 매직스페이스</b> — LG 시그니처 첫 적용, 같은 해 10월 디오스 적용 시작, 2017년 8종·50여 개국 확대<span class="fix">원문 "2017년 디오스 확대"는 첫 적용이 2016년 10월임을 보완</span></div></div>
+      <div class="yr">2016</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><b>패밀리허브</b> — 21.5형 터치스크린 탑재, 냉장고를 주방 허브로. 이후 CES 혁신상 13회.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2019.6</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">판을 다시 연 쪽</span><b>비스포크</b> — 패널 교체형 모듈 냉장고. 지펠 이후 22년 만의 두 번째 카테고리 재정의.</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">대응</span><b>오브제컬렉션</b>(10월) — 색·소재 선택형. 전신인 'LG 오브제'는 2018년 11월. 응수까지 약 1년 4개월.<span class="fix">원문 "2019~20" → 오브제컬렉션은 2020년 10월로 확정, 2019년설은 전신 브랜드와의 혼동</span></div></div>
+      <div class="yr">2020.10</div>
+      <div class="right empty"></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div><h4>LG의 축</h4><p>최초 생산자였으나 프리미엄 전환에서는 두 번(1997 지펠, 2019 비스포크) 모두 후발이었다. 다만 응수 속도가 각각 1년, 1년 4개월로 빨랐고, 인터넷 냉장고(2000)·얼음정수기(2013)·노크온(2016)처럼 기능 혁신의 '최초' 타이틀은 오히려 LG가 더 많이 가져갔다.</p></div>
+    <div><h4>삼성의 축</h4><p>카테고리 재정의를 두 번 해낸 유일한 축이다. 1997년 지펠로 프리미엄 판을, 2019년 비스포크로 모듈·디자인 판을 열었다. 세탁기와 달리 브랜드 서사가 살아 있고, 비스포크의 원형이 지펠의 성공 경험에서 나왔다는 점에서 일관된 전략이다.</p></div>
+  </div>
+</section>
+
+<!-- ============ 에어컨 ============ -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>에어컨 · 공조</h2></div>
+  <p class="sec-sub">가장 오래된 격차가 가장 최근에 다시 열린 전선. 이제 경쟁 무대는 가정용이 아니라 데이터센터·중앙공조다.</p>
+
+  <div class="tl">
+    <div class="row first">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">국내 최초</span><b>창문형 에어컨 GA-111</b> — 출시가 17만 2천 원, 당시 서민 아파트 분양가(30만~40만 원)의 절반<span class="fix">원문 "3월, 17.5만 원" → 월 표기는 확인 불가, 가격은 17만 2천 원 보도가 우세</span></div></div>
+      <div class="yr">1968</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row"><div class="gap">6년 공백 ◆</div></div>
+    <div class="row first">
+      <div class="left empty"></div>
+      <div class="yr">1974.5</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">진입</span>창문형 에어컨 <b>SRA-120W</b>로 에어컨 사업 개시</div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span><span class="tag">브랜드</span><b>휘센(WHISEN)</b> 출시(1월) — 첫해 400만 대 이상 판매, 글로벌 가정용 에어컨 점유율 1위 등극 후 다년 연속 유지</div></div>
+      <div class="yr">2000</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>에어컨 <b>누적 판매 1억 대</b> 돌파(11월 기준 1억 300만 대) — 사업 40주년, 업계 최초</div></div>
+      <div class="yr">2008</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2014.8</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>미국 HVAC 유통사 <b>콰이어트사이드 지분 100% 인수</b> — 1997년부터 삼성 공조제품을 유통하던 회사. B2B 채널 내재화의 시작.</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2016.1</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>세계 최초 무풍냉방 <b>무풍에어컨 Q9500</b> — 가정용에서 삼성이 만든 마지막 큰 차별화</div></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2024.5</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span>미국 레녹스와 합작법인 <b>Samsung Lennox HVAC North America</b> 발표(삼성 50.1%) — 하반기 텍사스에서 출범, 북미 덕트리스·VRF 유통망 확보<span class="fix">원문 "2024년 말" → 2024년 5월 발표로 정정</span></div></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>공조 전담 <b>ES사업본부 신설</b>(11월 조직개편, 12월 1일 시행). 2030년 공조 매출 20조 원 목표. MS와 데이터센터 냉각 <b>협력 추진</b> 발표.<span class="fix">원문 "공급 합의" → 당시는 협력 추진·기술 검증 단계로 정정</span></div></div>
+      <div class="yr">2024.11</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left"><div class="card"><span class="vf ok">✓</span>노르웨이 <b>OSO그룹 지분 100% 인수 계약</b>(6월 30일) — 1932년 설립, 스테인리스 온수저장 유럽 1위. 히트펌프 연계 온수 솔루션 확보.</div></div>
+      <div class="yr">2025.6</div>
+      <div class="right empty"></div>
+    </div>
+    <div class="row">
+      <div class="left empty"></div>
+      <div class="yr">2025.11</div>
+      <div class="right"><div class="card"><span class="vf ok">✓</span><span class="tag">전환점</span>독일 <b>플랙트그룹 인수 완료</b>(11월 6일, 5월 계약) — 트리톤 보유 지분 100%를 15억 유로(약 2조 4천억~2조 5천억 원)에. 유럽 중앙공조 점유율 12.2%로 1위(스웨곤 7%, 캐리어 6.8%, 트레인 6.5%). 2017년 하만(80억 달러) 이후 삼성전자 최대 M&amp;A.</div></div>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div><h4>LG의 축</h4><p>57년간 축적한 인버터 컴프레서·모터 기술을 조직으로 승격시켰다(ES본부). 자체 성장에 OSO 같은 소규모 인수를 더해 히트펌프–온수–칠러를 잇는 종합 공조 구조를 짰다. 경로는 세탁기와 같다: 부품 내재화, 점진 확장.</p></div>
+    <div><h4>삼성의 축</h4><p>개별공조 중심의 약점을 <b>인수로 단번에 메웠다</b>. 콰이어트사이드(채널)→레녹스(북미 합작)→플랙트(유럽 중앙공조·액체냉각)로 단계적으로 사들였고, 데이터센터 수요를 겨냥한다. 경로는 냉장고와 같다: 판 자체를 바꾸는 큰 베팅. 시간을 돈으로 산 전형.</p></div>
+  </div>
+</section>
+
+<!-- ============ 종합 ============ -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">04</span><h2>세 카테고리가 말하는 것</h2></div>
+  <p class="thesis">세 축 모두 LG가 먼저였다. 그러나 <span>지금까지 해자가 남은 건 세탁기 하나</span>다. 최초 진입은 해자를 만들지 못하고, 구조를 전 라인에 고정한 시점이 만든다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>선점은 유통기한이 있다</h5><p>냉장고는 LG가 1965년에 시작했지만 1997년 지펠 한 방으로 프리미엄 판이 삼성에게 넘어갔다. 32년 먼저 쌓은 것보다 카테고리를 새로 정의한 쪽이 이겼고, 2019년 비스포크에서 같은 일이 반복됐다.</p></div>
+    <div class="pt"><h5>부품을 전 라인에 고정하면 남는다</h5><p>세탁기만 다르다. LG는 1998년 DD를 만들고 2008년 전 라인에 강제했다. 삼성이 같은 구조를 갖춘 뒤에도(드럼 2008, 통돌이는 2011년까지 벨트 병행) 인식이 바뀌지 않은 이유다.</p></div>
+    <div class="pt"><h5>공조는 규칙이 다르다</h5><p>가정용 제품 경쟁이 아니라 B2B 채널·설치망·레퍼런스 싸움이라, 축적 대신 인수로 건너뛸 수 있다. 삼성의 콰이어트사이드→레녹스→플랙트 3단 인수가 그 증거다.</p></div>
+  </div>
+
+  <table>
+    <thead><tr><th>판을 바꾼 사건</th><th>선공</th><th>상대의 응수</th><th>응수 시차</th></tr></thead>
+    <tbody>
+      <tr><td>프리미엄 냉장고</td><td class="c-sg">삼성 지펠 (1997)</td><td class="c-lg">LG 디오스 (1998)</td><td>약 1년</td></tr>
+      <tr><td>DD모터 (드럼)</td><td class="c-lg">LG 상용화 (1998)</td><td class="c-sg">삼성 탑재 (≤2008)</td><td>최대 10년</td></tr>
+      <tr><td>DD모터 (통돌이 포함 전 라인)</td><td class="c-lg">LG 완료 (2008)</td><td class="c-sg">삼성 통돌이 벨트 병행 (2011~)</td><td>10년+</td></tr>
+      <tr><td>세탁 중 개입</td><td class="c-lg">LG 트윈워시 (2015.7)</td><td class="c-sg">삼성 애드워시 (2015.9)</td><td>2개월 (사실상 동시)</td></tr>
+      <tr><td>모듈·디자인 가전</td><td class="c-sg">삼성 비스포크 (2019.6)</td><td class="c-lg">LG 오브제컬렉션 (2020.10)</td><td>약 1년 4개월</td></tr>
+      <tr><td>유럽 중앙공조</td><td class="c-sg">삼성 플랙트 인수 (2025)</td><td class="c-lg">LG 자체 축적 + OSO (진행형)</td><td>경로 자체가 상이</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">브랜드·디자인 혁신의 응수는 1년 안팎, 부품 구조 혁신의 응수는 10년이 걸렸다. 해자의 위치가 마케팅이 아니라 부품에 있다는 뜻이다. 반대로 부품 격차가 없는 영역(2015년 트윈워시 vs 애드워시)에서는 응수가 두 달로 줄어든다.</p>
+
+  <table>
+    <thead><tr><th>구분</th><th>세탁기</th><th>냉장고</th><th>에어컨·공조</th></tr></thead>
+    <tbody>
+      <tr><td>LG 최초</td><td>1969.5</td><td>1965</td><td>1968</td></tr>
+      <tr><td>삼성 진입</td><td>1974.12</td><td>1974.2</td><td>1974.5</td></tr>
+      <tr><td>초기 격차</td><td class="c-lg">약 5년</td><td class="c-lg">약 9년</td><td class="c-lg">약 6년</td></tr>
+      <tr><td>판을 바꾼 쪽</td><td class="c-lg">LG (1998 DD)</td><td class="c-sg">삼성 (1997 지펠 → 2019 비스포크)</td><td class="c-sg">삼성 (2025 플랙트)</td></tr>
+      <tr><td>현재 우위</td><td class="c-lg">LG — 구조+인식</td><td>혼전 — 비스포크 vs 오브제컬렉션</td><td>재편 중 — B2B 전환기</td></tr>
+      <tr><td>해자 성격</td><td>부품 내재화 + 25년 서사</td><td>디자인·모듈 브랜드</td><td>채널·설치망·레퍼런스</td></tr>
+      <tr><td>삼성의 전략 원형</td><td>추격 후 보증으로 재브랜딩</td><td>카테고리 재정의 (2회 성공)</td><td>M&amp;A 3단 축적</td></tr>
+      <tr><td>LG의 전략 원형</td><td>부품 내재화 + 전 라인 표준화</td><td>기능 '최초' 다작 + 빠른 응수</td><td>부품 축적의 B2B 확장</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">흥미로운 우연: 삼성의 세 카테고리 진입이 모두 1974년 한 해에 일어났다(냉장고 2월 → 에어컨 5월 → 세탁기 12월). 백색가전 진입은 개별 판단이 아니라 한 번의 전사적 결정이었다는 뜻이다. 같은 해 12월 한국반도체 인수까지 겹치면, 1974년은 삼성전자의 사업 구조가 통째로 설계된 해다.</p>
+
+  <div class="errata" style="margin-top:44px">
+    <h3>정오표 — 원문 대비 수정 내역 (검증 결과)</h3>
+    <table>
+      <thead><tr><th>항목</th><th>원문</th><th>수정</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td>LG 트롬 출시</td><td><del>1999년</del></td><td><ins>2002년 2월</ins></td><td>LG전자 보도자료('출시 10년', 2012)</td></tr>
+        <tr><td>LG 디오스 출시</td><td><del>1999년</del></td><td><ins>1998년</ins></td><td>LG전자 '디오스 20주년'(2018)</td></tr>
+        <tr><td>LG 오브제컬렉션</td><td><del>2019~20년</del></td><td><ins>2020년 10월</ins> (전신 '오브제'는 2018.11)</td><td>출시 보도 다수</td></tr>
+        <tr><td>삼성 세탁기 장기보증</td><td><del>2023년 20년 보증</del></td><td><ins>국내 평생보증 2021년형부터, 유럽 20년 보증 2022.9 IFA 발표</ins></td><td>IFA 2022 보도</td></tr>
+        <tr><td>삼성 '디지털 세탁기'</td><td><del>2000년 출시</del></td><td><ins>근거 미확인으로 삭제</ins> — 확인되는 것은 1998 드럼세탁기, 2002.7 하우젠</td><td>검색 결과 부재</td></tr>
+        <tr><td>삼성 냉장고 진입</td><td><del>1974 (일설 1972)</del></td><td><ins>1974년 2월 SR-180으로 확정</ins> — 1972년설 뒷받침 자료 없음</td><td>삼성 뉴스룸 공식 연혁(2014)</td></tr>
+        <tr><td>'하이콜드' 브랜드</td><td><del>초기 브랜드</del></td><td><ins>1976년 절전형부터 사용</ins></td><td>아시아경제(2010)</td></tr>
+        <tr><td>삼성 4도어(2005)</td><td><del>출시 시장 미명기</del></td><td><ins>북미 출시</ins>('지펠 콰트로')</td><td>삼성 뉴스룸(2011)</td></tr>
+        <tr><td>GA-111 출시가</td><td><del>17.5만 원, 3월</del></td><td><ins>17만 2천 원, 월 미상</ins></td><td>머니투데이(2020) 외</td></tr>
+        <tr><td>삼성-레녹스 합작</td><td><del>2024년 말</del></td><td><ins>2024년 5월 발표, 하반기 출범</ins></td><td>Samsung Newsroom US(2024)</td></tr>
+        <tr><td>LG-MS 데이터센터</td><td><del>냉각 솔루션 공급 합의</del></td><td><ins>협력 추진·기술 검증 단계</ins>(2024.12 시점)</td><td>로이터(2024)</td></tr>
+        <tr><td>플랙트 인수액 환산</td><td><del>약 2.3~2.4조 원</del></td><td><ins>약 2.4~2.5조 원</ins> (15억 유로)</td><td>머니투데이·서울신문(2025)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <b>검증 방법</b> — 전 항목을 언론 보도·기업 공식 연혁·국가유산청 기록과 교차 대조했다. 카드의 ✓는 2개 이상 독립 출처로 확인된 항목, △는 단일 출처(자사 발표) 항목, ✎는 원문에서 수정된 항목이다.<br>
+    <b>주요 출처</b> — 국가유산청 국가유산포털(WP-181·GR-120 등록문화재), LG전자 뉴스룸·보도자료(DD모터 누적, 트롬·디오스 연혁, ES본부), 삼성전자 뉴스룸(45년 제품사, 지펠, 모터 라인업, 플랙트 인수 완료), 한국민족문화대백과사전(1974년 진입), Samsung Newsroom US·PR Newswire(레녹스 합작), 머니투데이·서울신문·냉동공조저널(플랙트), 아시아경제(하이콜드), 전자신문·한국경제(에어컨 1억 대) 외 언론 보도 다수.<br>
+    <b>남은 불확실성</b> — 삼성 드럼세탁기의 DD모터 최초 탑재 연도는 공식 발표가 없어 2009년 2월 보증(2008년 1월 제조분 소급)을 근거로 "늦어도 2008년"으로만 특정했다. 정확한 확정은 연식별 서비스 매뉴얼 대조가 필요하다. WP-181·GR-120·GA-111의 출시 '월'은 통용 보도 기준이며 1차 사료 확인은 하지 못했다.
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
