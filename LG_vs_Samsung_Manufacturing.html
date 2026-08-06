@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제조경쟁력 비교 — LG 창원 vs 삼성 광주 (확장판)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#141C24; --steel:#6E7C8A;
+  --rule:#C3CBD2; --lg:#A50034; --sg:#1428A0; --amber:#B4762A; --ok:#2E6B4F;
+  --serif:'Gowun Batang',serif; --sans:'Noto Sans KR',system-ui,sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
+
+header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,6vw,58px);line-height:1.15;margin:0 0 18px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--lg)} h1 strong{font-weight:700;color:var(--sg)}
+.standfirst{font-size:16px;max-width:62ch;color:#2C3946}
+
+section{padding-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:6px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
+h2{font-family:var(--serif);font-size:clamp(23px,4vw,32px);font-weight:700;margin:0}
+.sec-sub{color:var(--steel);font-size:14px;margin:0 0 26px;max-width:64ch}
+h3{font-family:var(--serif);font-size:19px;margin:34px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+
+/* correction callout */
+.correct{border:1px solid var(--amber);background:#F7F1E7;padding:18px 20px;margin:0 0 30px}
+.correct .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:8px}
+.correct p{font-size:14.5px;margin:0}
+.correct b{font-weight:500}
+
+/* two-col compare */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin-top:8px}
+.duo > div{padding:18px 20px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
+.duo > div:first-child{border-right:1px solid var(--rule);border-top:3px solid var(--lg)}
+.duo > div:last-child{border-top:3px solid var(--sg)}
+.duo h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.duo > div:first-child h4{color:var(--lg)} .duo > div:last-child h4{color:var(--sg)}
+.duo p{font-size:13.8px;margin:0 0 8px} .duo p:last-child{margin:0}
+.duo b{font-weight:500}
+
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
+th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:500;border-bottom:1px solid var(--ink)}
+td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:var(--steel)}
+.c-lg{color:var(--lg)} .c-sg{color:var(--sg)}
+.tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
+
+.metric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0 10px}
+.metric div{border-top:2px solid var(--ink);padding-top:10px}
+.metric .n{font-family:var(--mono);font-size:26px;font-weight:600;line-height:1.1}
+.metric .k{font-size:12.5px;color:var(--steel);margin-top:4px}
+.metric .n.lg{color:var(--lg)} .metric .n.sg{color:var(--sg)}
+
+.thesis{font-family:var(--serif);font-size:clamp(19px,3vw,24px);line-height:1.6;margin:0 0 28px;max-width:38ch}
+.thesis span{color:var(--lg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pt{border-top:2px solid var(--ink);padding-top:12px}
+.pt h5{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.pt p{margin:0;font-size:13.4px;color:#2C3946}
+
+.synth{margin-top:66px;border-top:2px solid var(--ink);padding-top:44px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--steel);line-height:1.8}
+footer b{font-weight:500;color:#3A4753}
+
+@media(max-width:720px){
+  .duo{grid-template-columns:1fr}
+  .duo > div:first-child{border-right:none}
+  .duo > div:last-child{border-top:3px solid var(--sg)}
+  .metric,.grid3{grid-template-columns:1fr;gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Manufacturing Capability · 모듈화 · 거점전략 · 부품 내재화 · 관세 · 손익 — Expanded &amp; Fact-checked</div>
+  <h1><em>창원</em>은 쌓았고<br><strong>광주</strong>는 나눴다</h1>
+  <p class="standfirst">
+    제조경쟁력 차이는 "누가 더 자동화했나"가 아니다. 두 회사는 같은 기술을 비슷한 시기에,
+    서로 다른 목적으로 썼다. 그 목적이 지금의 손익 구조를 만들었다.
+    이번 확장판은 기존 두 축(모듈러 설계·공장 운영)에 더해 부품 내재화, 미국 관세 대응과 해외 거점,
+    그리고 결과 지표인 수익성까지 여섯 개의 축으로 비교한다. 전 항목 언론 보도·공식 발표 대조를 거쳤다.
+  </p>
+</header>
+
+<!-- 00 정정 -->
+<section>
+  <div class="sec-head"><span class="sec-num">00</span><h2>먼저 바로잡을 것</h2></div>
+  <div class="correct">
+    <span class="lbl">Correction 1 — 모듈화</span>
+    <p>"삼성은 생산공정 모듈화를 하지 않았다"는 <b>사실이 아니다.</b> 삼성은 2013년 1월 광주 에어컨 라인에
+    모듈생산방식(MPS, Modular Production System)을 도입했고, 이는 LG가 창원 스마트파크를 완성하기
+    <b>수년 앞선 시점</b>이다. 논점은 "했느냐"가 아니라 <b>"무엇을 위해 했느냐"</b>다.</p>
+  </div>
+  <div class="correct">
+    <span class="lbl">Correction 2 — 부품 내재화</span>
+    <p>"삼성은 부품을 내재화하지 않았다"도 <b>사실이 아니다.</b> 광주사업장은 1999년부터 모터·컴프레서를
+    생산하며, 냉장고 컴프레서는 1976년 생산 개시 후 2017년 누적 2억 대를 넘겼다. 차이는 유무가 아니라
+    <b>규모와 사업화 수준</b>이다 — LG는 연 6,000만 대 규모에 40% 이상을 외판하는 독립 사업으로 키웠고,
+    삼성은 자급 중심으로 정량 공개가 적다.</p>
+  </div>
+</section>
+
+<!-- 01 모듈러 -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>모듈러 설계 — 같은 단어, 세 개의 층위</h2></div>
+  <p class="sec-sub">모듈화는 하나가 아니다. 제품 플랫폼 / 생산 방식 / 외관 옵션의 세 층에서 각각 일어나며, 어느 층에 걸었느냐가 원가와 재고를 가른다.</p>
+
+  <h3>삼성 — 생산 방식 층: MPS (2013)</h3>
+  <p>컨베이어를 따라가며 조립하던 방식을 버리고, 가로세로 2m의 독립 셀에서 한 사람이 전 공정을 책임지는
+  구조로 바꿨다. 제품을 세워서 따라가는 대신 <b>눕혀 놓고 정지 상태에서 조립</b>한다. 대형 가전은 컨베이어가
+  절대 유리하다는 통념을 뒤집은 시도였다.</p>
+  <div class="metric">
+    <div><div class="n sg">+25%</div><div class="k">인당 생산대수 (2013년 1분기, 전년 동기 대비)</div></div>
+    <div><div class="n sg">−50%</div><div class="k">불량 발생률</div></div>
+    <div><div class="n sg">600m→120m</div><div class="k">생산라인 직선거리</div></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--steel)">한 명이 문제를 겪어도 나머지 셀은 계속 돈다 — 라인 정지 리스크를 셀 단위로 격리한 구조.</p>
+
+  <h3>LG — 설비·플랫폼 층: 혼류 생산</h3>
+  <p>모듈러 디자인에 최적화한 <b>생산설비</b>로 제조공정을 단순화해, 신제품 개발 시간과 비용, 새 모델을 위한
+  라인 구축 기간을 함께 줄였다. 창원 통합생산동은 <b>냉장고 58종 모델을 한 라인에서 혼류 생산</b>하며
+  13초에 1대를 만든다. 셀 단위 생산성이 아니라 <b>모델 전환 비용</b>을 겨눈 설계다.</p>
+  <div class="metric">
+    <div><div class="n lg">58종</div><div class="k">한 라인 혼류 생산 모델 수 (창원 통합생산동)</div></div>
+    <div><div class="n lg">+17~20%</div><div class="k">생산성 향상 (불량률 −30%)</div></div>
+    <div><div class="n lg">−96%</div><div class="k">설비고장에 따른 라인 중단시간</div></div>
+  </div>
+
+  <h3>그리고 외관 층 — 비스포크 / 오브제</h3>
+  <p>고객이 색과 패널을 고르는 층. 매출에는 직접 기여하지만, 조합 수만큼 <b>실물 재고</b>가 생긴다.
+  앞의 두 층이 재고를 만들지 않는 것과 결정적으로 다르다.</p>
+
+  <table>
+    <thead><tr><th>층위</th><th>무엇을 모듈화</th><th>얻는 것</th><th>재고 영향</th></tr></thead>
+    <tbody>
+      <tr><td>제품 플랫폼</td><td>냉각·구동·제어 등 기능 단위</td><td>개발·검증 비용 절감</td><td>감소 (부품 공용화)</td></tr>
+      <tr><td>생산 방식</td><td>작업 단위(셀), 설비 구성</td><td>생산성·품질·전환속도</td><td>중립~감소</td></tr>
+      <tr><td>외관 옵션</td><td>패널·색상·도어</td><td>선택권 = 매출</td><td class="c-sg">증가</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13.5px;margin-top:14px">
+    <b>정확한 대비는 이것이다.</b> 삼성은 세 층 모두를 건드렸으나 무게중심이 위쪽(외관)에 실렸고,
+    LG는 아래 두 층에 집중했다. 위층은 매출을 만들고 아래층은 원가를 만든다.
+  </p>
+</section>
+
+<!-- 02 거점 -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>공장 운영 — 집적 vs 분산</h2></div>
+  <p class="sec-sub">같은 국내 마더팩토리라도 안에 무엇을 함께 두느냐가 다르다.</p>
+
+  <div class="duo">
+    <div>
+      <h4>LG 창원 — 1976년 준공</h4>
+      <p><b>부품 · 개발 · 생산 · 물류를 한 부지에.</b> 모터·컴프레서 부품 조직, 제품별 연구소, 완제품 라인,
+      지능형 무인창고가 걸어서 닿는 거리에 있다.</p>
+      <p>연구소를 제품 옆에 붙여 지었다 — 2011 세탁기R&amp;D센터, 2013 시스템에어컨연구소, 2014 에어컨
+      전자파 규격시험소, 2017 창원R&amp;D센터(주방가전, 연구원 1,500명).</p>
+      <p>39년간 가전사업본부 본관이던 건물을 헐고 그 자리에 R&amp;D센터를 세웠다. <b>중심을 관리에서 개발로 옮긴 선언.</b></p>
+      <p>총 8,000억 원을 투입해 창원1사업장을 스마트공장으로 전환. 2022년 3월 <b>WEF 등대공장</b> 선정 — 국내 가전업계 최초.</p>
+    </div>
+    <div>
+      <h4>삼성 광주 — 1989년 설립</h4>
+      <p><b>국내 유일의 백색가전 생산기지.</b> 약 70만㎡ 부지에 3개 캠퍼스, 임직원 3,000~3,500명.
+      에어컨·냉장고·세탁기 완제품과 함께 <b>모터·컴프레서 핵심 부품도 여기서 만든다.</b></p>
+      <p>1999년 모기업에서 냉장고·모터·컴프레서 사업을 이관받아 삼성광주전자가 됐고, 2011년 삼성전자에 흡수합병.</p>
+      <p>비스포크·패밀리허브 등 프리미엄을 생산하고, <b>중저가 라인은 베트남·멕시코로 대거 이전</b>했다.
+      2024년에는 구형 냉장고 일부 라인을 멕시코로 보내는 대신 일체형 세탁건조기·시스템에어컨을 광주에 배치하는 재배치를 단행.</p>
+      <p>2010년 정밀금형개발센터 설립 — 약 26,400㎡, "아시아 최대 금형시설"(삼성 발표 기준), 전 공정 자동화·24시간 무인 가동, 금형 납기 절반 단축.</p>
+    </div>
+  </div>
+
+  <h3>결정적 차이 ① — '개발'의 위치</h3>
+  <p>부품 내재화는 <b>양사 모두 마더팩토리에서 한다</b>. 다르게 갈리는 지점은 R&amp;D다. LG는 제품별 연구소를
+  생산 부지 안에 차례로 지어 설계–라인 간 거리를 물리적으로 없앴고, 삼성은 금형 같은 제조 기반 기술을
+  현장에 두되 상품 기획·개발 축은 수원 중심에 남겼다. 설계 변경이 라인에 도달하는 경로 길이가 다르다.</p>
+
+  <h3>결정적 차이 ② — 부품의 사업화 수준</h3>
+  <p>LG는 모터·컴프레서를 창원과 중국·인도·태국 등 <b>글로벌 7개 거점에서 연 6,000만 대 규모</b>(모터·컴프레서 각 3,000만 대)로
+  생산하며, 창원이 그중 약 30%를 맡는 중심축이다. 30여 종을 자사 제품에 수직계열화 공급하는 데서 나아가
+  <b>컴프레서 생산량의 40% 이상을 외부 판매</b>해 가전 부품사업 매출만 연 1조 원을 넘겼다(2023).
+  부품이 원가 절감 수단이 아니라 독립 수익원이다. 삼성 광주도 컴프레서 누적 2억 대(2017)를 생산했지만
+  자급 중심이고 연간 생산량·외판 비중을 공개하지 않는다 — 부품을 '기능'으로 두느냐 '사업'으로 키우느냐의 차이.</p>
+
+  <h3>결정적 차이 ③ — 실험장의 유무</h3>
+  <p>LG는 <b>지킬 곳과 실험할 곳을 물리적으로 분리</b>했다. 창원은 50년간 성격을 바꾸지 않았고, 평택에서
+  AV·휴대폰·EV충전기를 시도하다 접었다(2019 스마트폰 하이퐁 이전 → 인력 창원 재배치, 2023 충전기 라인 전환,
+  2025 충전기 철수). 실험이 실패해도 본진이 흔들리지 않는다. 삼성은 국내 가전이 광주 단일 거점이라
+  같은 완충 장치가 없고, 대신 해외 거점을 조정 변수로 쓴다.</p>
+</section>
+
+<!-- 03 관세와 해외 거점 -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>관세가 드러낸 차이 — 미국 공장의 쓰임새</h2></div>
+  <p class="sec-sub">2018년 세이프가드에 대한 응답으로 두 회사는 같은 해에 미국 공장을 열었다. 7년 뒤 두 번째 관세 파도가 왔을 때, 같은 공장의 쓰임새가 달랐다.</p>
+
+  <div class="duo">
+    <div>
+      <h4>LG 테네시 클락스빌 — 2018.12 가동</h4>
+      <p>누적 약 3억 9,000만 달러 투자. 세탁기 연 120만 대 + 건조기 연 60만 대(2022년 라인 추가).
+      사출·프레스·도장까지 일관 생산하는 <b>수직계열화 공장</b>.</p>
+      <p>2023년 1월 <b>WEF 등대공장 선정</b> — 한국 기업의 해외 공장 최초. 자동화율 약 60%,
+      자율주행 로봇 200여 대, 프라이빗 5G, 디지털트윈.</p>
+      <p>2025년 관세 국면 대응: 세탁기·건조기 물량을 테네시로 점진 이전하고, <b>냉장고·오븐 등 추가 품목 생산을 검토</b> —
+      기존 거점을 '멀티 제품 기지'로 확장하는 방향.</p>
+    </div>
+    <div>
+      <h4>삼성 뉴베리(사우스캐롤라이나) — 2018.1 가동</h4>
+      <p>누적 약 4억 7,000만~5억 달러 투자, 고용 1,200명+. 세탁기 연 100만 대 수준, 가동 후 누적 400만 대 이상.
+      세이프가드 발표 열흘 전 가동을 시작한 <b>선제 대응형</b> 공장.</p>
+      <p>세탁기 전용으로 유지 — 품목 다변화·등대공장 지정은 아직 없음.</p>
+      <p>2025년 관세 국면 대응: 멕시코 케레타로의 <b>건조기 물량을 뉴베리로 이전 검토</b>(물량 재배치) +
+      2026년 저부가 제품(전자레인지·식기세척기·에어드레서 등) <b>ODM 외주 확대</b>·비주력 해외공장 정리 검토 보도.</p>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>관세 이벤트</th><th>내용</th><th>양사 대응</th></tr></thead>
+    <tbody>
+      <tr><td>2018.2</td><td>세탁기 세이프가드 발효 — 쿼터 내 20%, 초과 50%(TRQ). 월풀 제소가 발단</td><td>양사 모두 미국 현지 공장 가동으로 정면 대응 (삼성 2018.1, LG 2018.12)</td></tr>
+      <tr><td>2021.1</td><td>세이프가드 2년 연장 (세율 인하)</td><td>현지 생산 비중 확대 지속</td></tr>
+      <tr><td>2023.2</td><td>세이프가드 종료 (총 5년)</td><td>현지 공장은 유지 — 관세 대응용에서 상시 거점으로 전환</td></tr>
+      <tr><td>2025.6</td><td>Section 232 철강 파생제품 관세(50%)가 냉장고·세탁기 등 가전 11개 품목으로 확대 — 제품 내 철강 함유 가치에 부과</td><td class="c-lg">LG: 테네시 품목 확대(멀티 기지화)</td></tr>
+      <tr><td>2026</td><td>가전 수요 둔화 + 관세·물류비 부담 지속</td><td class="c-sg">삼성: 물량 재배치 + 저부가 외주화 + 거점 축소 검토 (경량화)</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">글로벌 거점 규모: LG는 13개국 26개 생산기지에 지능형 공정기술을 확산 중이라고 밝혔고(창원 마더팩토리 + 미국·멕시코·중국·베트남·인도·폴란드 등), 삼성 생활가전은 광주 + 베트남·멕시코·폴란드·인도 등 8~9개국 안팎. 같은 '분산'이라도 LG는 마더팩토리의 복제, 삼성은 원가 최적화형 배치에 가깝다.</p>
+</section>
+
+<!-- 04 그 밖의 축 -->
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>그 밖의 제조경쟁력 비교축</h2></div>
+  <p class="sec-sub">모듈화·거점·관세 외에 손익에 직접 닿는 일곱 가지.</p>
+
+  <table>
+    <thead><tr><th>축</th><th style="color:var(--lg)">LG</th><th style="color:var(--sg)">삼성</th><th>함의</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>부품 내재화</td>
+        <td>모터·컴프레서 <b>연 6,000만 대</b>, 7개 거점, 30여 종. 컴프레서 <b>40%+ 외판</b>, 부품 매출 연 1조 원+</td>
+        <td>광주에서 모터·컴프레서 생산(컴프레서 누적 2억 대, 3초당 1대). 자급 중심, 정량 미공개</td>
+        <td class="c-lg">LG 우위. 부품이 원가 수단을 넘어 독립 수익원 — 규모의 경제가 자사 원가로 되돌아온다</td>
+      </tr>
+      <tr>
+        <td>금형</td>
+        <td>창원 내 자체 금형 역량(외부 공개 자료 제한적)</td>
+        <td><b>정밀금형개발센터</b> 2010, 전 공정 자동화·24시간 무인, 납기 절반</td>
+        <td class="c-sg">삼성 우위. 비스포크의 색·형상 다변화를 물리적으로 뒷받침</td>
+      </tr>
+      <tr>
+        <td>자동화 검증</td>
+        <td><b>WEF 등대공장 2곳</b> — 창원(2022.3, 가전업계 최초)·테네시(2023.1, 한국기업 해외공장 최초)</td>
+        <td>제3자 지정 없음. 자체 발표 중심 — 'AI 자율공장 2030' 선언(2026, 전 공장 디지털트윈·AI 에이전트·휴머노이드 도입 계획)</td>
+        <td class="c-lg">현재는 LG가 제3자 검증에서 앞서고, 삼성은 미래 계획으로 대응하는 구도</td>
+      </tr>
+      <tr>
+        <td>디지털트윈</td>
+        <td>30초마다 공장 데이터 수집, <b>10분 뒤 라인 상황 예측</b>. 딥러닝 사전 품질예측</td>
+        <td>삼성SDS 넥스플랜트 기반 제조 지능화(전사 플랫폼) + AI 자율공장 전환 계획</td>
+        <td class="c-lg">LG는 가전 라인 전용, 삼성은 범용 플랫폼 — 밀착도 차이</td>
+      </tr>
+      <tr>
+        <td>로봇 자산</td>
+        <td><b>로보스타 인수</b>(2018, 약 800억 원·지분 30% 최대주주) — 산업용 로봇 내재화, 5G 물류로봇 600kg 자동 운반</td>
+        <td>레인보우로보틱스 인수(휴머노이드 축) — 가전 라인 적용은 계획 단계</td>
+        <td>LG는 현재 라인에, 삼성은 미래 폼팩터에 베팅</td>
+      </tr>
+      <tr>
+        <td>물류</td>
+        <td>지능형 무인창고·고공 컨베이어 입체물류. 대규모 글로벌 물동 기반 <b>선사 재협상·기본운임 개선</b></td>
+        <td>거점 분산으로 물동이 나뉨</td>
+        <td class="c-lg">LG 우위. 운임 협상력은 규모 집중에서 나온다</td>
+      </tr>
+      <tr>
+        <td>노하우 사업화</td>
+        <td><b>스마트팩토리 솔루션 외판</b> — 2024년 진출 첫해 수주 3,000억 원, 20여 고객사(이차전지·차부품·물류), 2030년 조 단위 목표</td>
+        <td>중소기업 <b>스마트공장 지원사업</b> — 2015년 시작, 누적 3,200여 개사 무상 지원, 2023년부터 '3.0' 고도화</td>
+        <td class="c-lg">같은 노하우를 LG는 매출로, 삼성은 CSR로 쓴다</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 05 성적표 -->
+<section>
+  <div class="sec-head"><span class="sec-num">05</span><h2>성적표 — 손익으로 본 제조경쟁력</h2></div>
+  <p class="sec-sub">제조 구조의 차이는 결국 이익률에 나타나야 한다. 나타났다.</p>
+
+  <div class="metric">
+    <div><div class="n lg">9.6%</div><div class="k">LG HS본부 영업이익률 (2026년 2분기, 공시)</div></div>
+    <div><div class="n sg">적자</div><div class="k">삼성 VD·가전 합산 (2026년 2분기 영업손실 약 100억, 2분기 연속 격차 1조 원대)</div></div>
+    <div><div class="n lg">4년 연속</div><div class="k">LG, 매출·영업이익 모두 월풀 제치고 세계 1위 (2022~2025)</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>연도</th><th style="color:var(--lg)">LG 가전 (H&amp;A→HS, 공시)</th><th style="color:var(--sg)">삼성 VD·가전 합산 (공시)</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>2021</td><td>매출 27.1조 / 영업이익 약 2.2조 (8%)</td><td>매출 55.8조 / 3.65조 (6.5%)</td><td>삼성은 TV 호황 효과 포함</td></tr>
+      <tr><td>2022</td><td>29.9조 / 1.13조 (3.8%)</td><td>약 60.6조 / 약 1.35조 (2.2%)</td><td>물류비 급등의 해</td></tr>
+      <tr><td>2023</td><td>30.1조 / 2.01조 (6.7%)</td><td>56.4조 / 약 1.25조 (2.2%)</td><td>LG 이익 +76% 회복</td></tr>
+      <tr><td>2024</td><td>33.2조 / 2.04조 (6.2%)</td><td>약 56.7조 / 약 1.5조 (2%대)</td><td></td></tr>
+      <tr><td>2025</td><td>26.1조 / 1.28조 (4.9%) ※HVAC 분리</td><td>57.3조 / <b>영업손실 약 2,000억</b></td><td>관세·수요침체. LG는 ES본부(공조) 별도로 매출 9.4조·이익 6,300억</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">
+    <b>읽을 때 주의.</b> LG는 본부별 실적을 공시하지만 삼성은 TV(VD)+생활가전(DA) 합산까지만 공시한다.
+    증권가는 삼성 DA 단독 이익률을 0~2%대로 추정(2025년 2분기 추정 0%) — 즉 "LG 6~7% vs 삼성 0~2%"라는 통용 비교의
+    삼성 쪽 숫자는 전부 추정치다. 2025년 LG 수치는 HVAC(ES본부) 분리 후 기준이라 전년과 직접 비교할 수 없다.
+  </p>
+  <p style="font-size:13.8px">
+    수익성 격차의 원인으로 언론·애널리스트가 꼽는 것들은 이 문서의 앞 장들과 정확히 겹친다:
+    <b>① 핵심부품 내재화</b>(모터·컴프레서 자체 생산), <b>② 창원 집적 생산체계</b>,
+    <b>③ 프리미엄+볼륨존 투트랙과 D2C</b>, <b>④ 구독 사업</b>(2024년 매출 약 2조, +75%).
+    이 중 ①②는 제조 구조 그 자체다. 반대로 삼성 부진 요인으로는 프로모션·판관비 증가, 관세, 중국 공세가 지목된다 —
+    구조가 아니라 시황 변수들이고, 그래서 시황이 나빠질 때마다 구조 차이가 이익률 격차로 증폭된다.
+  </p>
+</section>
+
+<!-- 06 결론 -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">06</span><h2>결론</h2></div>
+  <p class="thesis">두 회사는 같은 기술을 가졌다. 다른 것은 <span>그 기술을 무엇에 쓰기로 했는가</span>다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>삼성은 유연성에 걸었다</h5><p>셀 생산·금형 자동화·거점 분산은 모두 <b>다품종 대응</b>을 위한 설계다. 수요가 팽창하고 신흥국이 커지는 국면에서 강하다. 비스포크는 그 정점이었다.</p></div>
+    <div class="pt"><h5>LG는 집적에 걸었다</h5><p>부품·개발·생산·물류를 한 곳에 묶고 부품을 독립 사업으로 키워 규모의 경제를 자사 원가로 되돌렸다. 원가 상승·수요 둔화·관세 국면에서 강하다. 지금이 그 국면이다.</p></div>
+    <div class="pt"><h5>지금은 LG의 시나리오</h5><p>2025년 삼성 VD·가전 합산 적자와 LG의 월풀 4년 연속 추월이 증거다. 삼성의 2026년 재편(저부가 외주화·해외 라인 정리)은 분산 베팅을 접고 선택과 집중으로 트는 신호로 읽힌다.</p></div>
+  </div>
+
+  <h3>리포트에 쓸 때의 표현</h3>
+  <p>"삼성이 모듈화(내재화)를 못 했다" — <b>틀렸고 반박당한다.</b><br>
+  "삼성은 모듈화를 고객 선택권에, LG는 원가 구조에 걸었다. 부품도 삼성은 자급 기능으로, LG는 독립 사업으로 운영한다" — <b>사실에 맞고 시사점이 남는다.</b><br>
+  "삼성 가전은 이익률 0%대" — <b>추정치임을 밝혀야 한다.</b> 삼성은 DA 단독 실적을 공시하지 않는다.</p>
+</section>
+
+<!-- 07 부록 -->
+<section>
+  <div class="sec-head"><span class="sec-num">07</span><h2>부록 — 브랜드 체계와 카테고리 커버리지 (2026)</h2></div>
+  <p class="sec-sub">제조 전략은 판매 구조에도 그대로 투영된다. LG는 카테고리별 브랜드의 다층 구조, 삼성은 비스포크 단일 우산.</p>
+
+  <table>
+    <thead><tr><th>카테고리</th><th style="color:var(--lg)">LG</th><th style="color:var(--sg)">삼성</th></tr></thead>
+    <tbody>
+      <tr><td>디자인·개인화 우산</td><td>오브제컬렉션 (+초프리미엄 시그니처)</td><td>비스포크 AI (단일 우산)</td></tr>
+      <tr><td>주방</td><td>디오스 + 신규 스템(직수 냉장고)</td><td>비스포크 AI · 패밀리허브(스크린)</td></tr>
+      <tr><td>세탁·의류관리</td><td>트롬 (워시타워·워시콤보·스타일러)</td><td>비스포크 AI (콤보·어드레서), 그랑데는 흡수</td></tr>
+      <tr><td>에어컨</td><td>휘센 (타워·뷰) — 창문형 없음, 이동식 보유</td><td>무풍 (갤러리 프로) — 창문형 윈도우핏 보유</td></tr>
+      <tr><td>청소기 / 청정</td><td>코드제로 / 퓨리케어</td><td>제트·제트봇 / 비스포크 큐브</td></tr>
+      <tr><td>빌트인·럭셔리</td><td>시그니처 키친 스위트</td><td>인피니트 라인 + 데이코</td></tr>
+      <tr><td>히트펌프 보일러</td><td>써마브이 (2026 국내 투입)</td><td>한국형 EHS (2026 국내 투입) — 신규 격전지</td></tr>
+      <tr><td>구독</td><td>LG 구독 — 20종+, 방문 케어형 (2024년 매출 약 2조)</td><td>AI 구독클럽 (2024.12~) — 갤럭시 결합형</td></tr>
+      <tr><td>한쪽만 하는 것</td><td class="c-lg">식물가전(틔운), 가습기, 이동식 에어컨, 이동형 AI허브 Q9 출시</td><td class="c-sg">창문형 에어컨, 스크린 냉장고, 멀티조리기(큐커), 갤럭시 결합 구독</td></tr>
+      <tr><td>접은 것</td><td>홈브루(2026 단종), EV충전기(2025 철수)</td><td>볼리(출시 무기한 연기), 셰프컬렉션·그랑데 브랜드(통합)</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">과거 'LG만'이던 정수기는 삼성이 비스포크 AI 정수기로 진입해 비대칭이 해소됐지만, 사업모델은 다르다 — LG는 방문 케어 구독(2009년 렌탈 원조), 삼성은 셀프 필터교체 기기판매. 브랜드 다층 구조(LG)는 카테고리별 자산을 지키고, 단일 우산(삼성)은 전환 비용을 줄인다 — 제조에서의 '집적 vs 표준화' 대비가 브랜드에서도 반복된다.</p>
+</section>
+
+<footer>
+  <b>출처</b> — 삼성 MPS: 삼성전자 뉴스룸(2013.4, 인당생산 +25%·불량률 −50%), 디지털타임스 광주사업장 르포(2019.6, 셀 2m·라인 600→120m).
+  광주사업장·금형: 디지털광주문화대전, 투데이에너지(정밀금형개발센터), 뉴시스·EBN(컴프레서 누적 2억 대, 2017), 전자신문(2024 광주 물량 재배치).
+  창원·LG 부품: LG전자 보도자료(등대공장 2022.3, 혼류 58종·생산성 수치), 비즈워치 르포(2022), 넥스트데일리·아주경제(모터·컴프레서 연 6,000만 대, 2016), 전자신문(부품 매출 1조·외판 40%, 2023), 헤럴드경제(모터 외판 개시, 2011), 더벨(로보스타 인수, 2018).
+  미국 공장·관세: LG전자 뉴스룸(테네시 등대공장 2023.1), TNECD·REBusinessOnline(테네시 투자), Samsung Newsroom US·SC Biz(뉴베리), USTR·CRS(세이프가드), 디지털데일리(세이프가드 종료, 2023), C.H. Robinson(Section 232 확대, 2025.6), 한국경제(멕시코 건조기 이전 검토, 2025.1), 뉴시스·전자신문(삼성 2026 재편 보도).
+  수익성: LG전자 실적발표·뉴스룸(2021~2025 본부별 공시), 삼성전자 분기 실적발표(VD·가전 합산), 유진투자증권·IBK투자증권 추정(뉴시스, 2025), 전자신문("4년 연속 월풀 제쳤다", 2026.1), 헤럴드경제·아주경제(2026년 2분기).
+  스마트팩토리 사업: ZDNet Korea(LG 수주 3,000억, 2024), 서울신문·삼성전자 뉴스룸(스마트공장 3.0), 삼성전자 뉴스룸(AI 자율공장 2030, 2026).<br>
+  <b>한계</b> — LG의 금형 역량, 삼성 광주의 자동화율·라인 전환 시간처럼 한쪽만 공개된 지표가 있어 표의 우열 판단은 <b>공개 자료 범위 내</b>의 비교다. 삼성 DA 단독 손익은 회사가 공시하지 않아 증권가 추정에 의존했다. "아시아 최대 금형시설"은 삼성 발표 표현으로 제3자 검증 기준은 확인되지 않았다. 삼성의 2026년 재편(외주화·거점 정리)은 복수 매체의 검토 단계 보도이며 회사의 확정 발표가 아니다.
+</footer>
+
+</div>
+</body>
+</html>
