@@ -7,12 +7,12 @@
 <style>
 :root{
   --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#0B1118; --steel:#3E5166;
-  --rule:#C3CBD2; --lg:#D10049; --sg:#1B4AE0; --amber:#C97800;
+  --rule:#C3CBD2; --lg:#D10049; --sg:#1B4AE0; --amber:#C97800; --ok:#148A54; --no:#B3261E;
   --serif:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; --sans:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',system-ui,sans-serif; --mono:'Malgun Gothic','맑은 고딕',Consolas,monospace;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px 110px}
 
 header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
@@ -29,27 +29,27 @@ section{padding-top:60px}
 .sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
 h2{font-family:var(--serif);font-size:clamp(23px,4vw,32px);font-weight:700;margin:0}
 .sec-sub{color:var(--steel);font-size:14px;margin:0 0 26px;max-width:64ch}
-h3{font-family:var(--serif);font-size:18px;margin:30px 0 8px;font-weight:700}
 p{margin:0 0 14px}
-
-/* two-col compare */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin-top:8px}
-.duo > div{padding:18px 20px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
-.duo > div:first-child{border-right:1px solid var(--rule);border-top:3px solid var(--lg)}
-.duo > div:last-child{border-top:3px solid var(--sg)}
-.duo h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
-.duo > div:first-child h4{color:var(--lg)} .duo > div:last-child h4{color:var(--sg)}
-.duo p{font-size:13.6px;margin:0 0 8px} .duo p:last-child{margin:0}
-.duo b{font-weight:700}
-.duo .br{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--steel)}
 
 table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
 th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
 th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:700;border-bottom:1px solid var(--ink)}
-td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:var(--steel)}
+td:first-child{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--steel)}
 .c-lg{color:var(--lg)} .c-sg{color:var(--sg)}
 .tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
 td b{font-weight:700}
+
+/* unified lineup table */
+.lineup td{width:41%}
+.lineup td:first-child{width:18%;white-space:normal;font-weight:700;color:var(--ink)}
+.lineup tr.grp td{
+  background:var(--ink);color:#F4F6F7;font-family:var(--mono);font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:8px 10px;border-bottom:none;
+}
+.yes{color:var(--ok);font-weight:700;margin-right:4px}
+.no{color:var(--no);font-weight:700}
+.no small{font-weight:400;color:var(--steel);font-size:12px}
+.new{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--amber);font-weight:700}
 
 .thesis{font-family:var(--serif);font-size:clamp(19px,3vw,24px);line-height:1.6;margin:0 0 28px;max-width:38ch}
 .thesis span{color:var(--lg)}
@@ -63,9 +63,8 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-si
 footer b{font-weight:700;color:#202E3A}
 
 @media(max-width:720px){
-  .duo{grid-template-columns:1fr}
-  .duo > div:first-child{border-right:none}
   .grid3{grid-template-columns:1fr;gap:14px}
+  .lineup{display:block;overflow-x:auto}
 }
 </style>
 </head>
@@ -79,11 +78,14 @@ footer b{font-weight:700;color:#202E3A}
     LG는 카테고리별 개별 브랜드(디오스·트롬·휘센·퓨리케어·코드제로) 위에
     오브제컬렉션과 시그니처를 얹는 다층 구조, 삼성은 '비스포크 AI' 단일 우산 아래
     무풍·제트 같은 기술 서브네임을 붙이는 통합 구조다. 2026년 현재 양사가 실제로
-    판매 중인 카테고리를 전수 비교하고, 한쪽만 하는 영역과 최근 해소된 비대칭을 정리한다.
+    판매 중인 카테고리를 하나의 표로 전수 비교한다 — 한쪽만 하는 것, 그리고
+    헤어드라이어·전기밥솥처럼 <b>둘 다 하지 않는 것</b>까지.
   </p>
   <div class="legend">
     <span><i class="dot lg"></i> LG전자 HS본부</span>
     <span><i class="dot sg"></i> 삼성전자 DA사업부</span>
+    <span style="color:var(--ok)">● 판매 중</span>
+    <span style="color:var(--no)">✕ 미판매</span>
   </div>
 </header>
 
@@ -103,123 +105,91 @@ footer b{font-weight:700;color:#202E3A}
       <tr><td>에어컨·제습</td><td><b>휘센</b> — 타워·뷰</td><td><b>무풍</b> — 비스포크 AI 무풍, 윈도우핏</td></tr>
       <tr><td>청소기</td><td><b>코드제로</b> + 로보킹</td><td><b>제트 / 제트봇</b> — 비스포크 제트 AI, AI 스팀</td></tr>
       <tr><td>청정·정수·가습</td><td><b>퓨리케어</b></td><td>비스포크 큐브 에어 / 비스포크 AI 정수기</td></tr>
-      <tr><td>식물가전</td><td><b>틔운</b></td><td>—</td></tr>
       <tr><td>구독</td><td><b>LG 구독</b> (구 케어솔루션)</td><td><b>AI 구독클럽</b> (2024.12~)</td></tr>
     </tbody>
   </table>
   <p class="tbl-note">다층 구조(LG)는 카테고리별 브랜드 자산(트롬 25년, 휘센 26년, 디오스 28년)을 지키고, 단일 우산(삼성)은 마케팅 전환 비용을 줄인다 — 제조에서의 '집적 vs 표준화' 대비가 브랜드에서도 반복된다.</p>
 </section>
 
-<!-- 02 주방 -->
+<!-- 02 통합 라인업 표 -->
 <section>
-  <div class="sec-head"><span class="sec-num">02</span><h2>주방가전</h2></div>
-  <div class="duo">
-    <div>
-      <h4>LG — 디오스 중심</h4>
-      <p><span class="br">냉장고</span><br>디오스 AI 오브제컬렉션 4도어(무드업 패널)·양문형(매직스페이스)·컨버터블 패키지·빌트인 키친핏. <b>스템(STEM)</b> 직수형(정수·제빙) 냉장고 — 2025년 신설한 구독 연계형 신규 축.</p>
-      <p><span class="br">김치냉장고</span><br>김치톡톡(스탠드·뚜껑형), 2026년형 첫 'AI 맞춤보관'(포장김치 바코드 인식)</p>
-      <p><span class="br">조리</span><br>광파오븐, 인덕션(3구·와이드존), 전자레인지</p>
-      <p><span class="br">식기세척기 · 정수기</span><br>디오스 식기세척기(트루스팀). <b>퓨리케어 정수기</b> — 2009년 렌탈 원조, 방문 케어 구독 중심</p>
-      <p><span class="br">빌트인</span><br>시그니처 키친 스위트 — 컬럼형 냉장·냉동, 얼음정수냉장고, 2026년 SKS 전용 구독 신설</p>
-    </div>
-    <div>
-      <h4>삼성 — 비스포크 AI 중심</h4>
-      <p><span class="br">냉장고</span><br>비스포크 AI 4도어(키친핏 맥스)·양문형·1도어 조합형. <b>패밀리허브</b> — 스크린 냉장고는 삼성만 보유.</p>
-      <p><span class="br">김치냉장고</span><br>비스포크 AI 김치플러스(스탠드·뚜껑형), 키친핏 맥스·메탈쿨링</p>
-      <p><span class="br">조리</span><br>비스포크 AI 오븐, <b>큐커</b>(멀티조리기 — LG 대응 제품 없음), 인덕션, 전자레인지</p>
-      <p><span class="br">식기세척기 · 정수기</span><br>비스포크 AI 식기세척기. <b>비스포크 AI 정수기·얼음정수기</b>(2026 신규) — 셀프 필터교체 기기판매형으로 정수기 시장 진입</p>
-      <p><span class="br">빌트인</span><br>비스포크 인피니트 라인(구 셰프컬렉션 계승) + 데이코(초고가 자회사 브랜드)</p>
-    </div>
-  </div>
-</section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>통합 라인업 표 — 전 카테고리 한 장 비교</h2></div>
+  <p class="sec-sub">● 판매 중(대표 브랜드·제품), ✕ 미판매. 마지막 그룹은 두 회사 모두 하지 않는 카테고리다.</p>
 
-<!-- 03 리빙/세탁 -->
-<section>
-  <div class="sec-head"><span class="sec-num">03</span><h2>리빙 · 세탁</h2></div>
-  <div class="duo">
-    <div>
-      <h4>LG — 트롬 · 코드제로 · 퓨리케어</h4>
-      <p><span class="br">세탁</span><br>트롬 드럼세탁기, <b>워시타워</b>(타워형 일체), <b>워시콤보</b>(드럼 일체형 세탁건조기), 통돌이, 미니워시(트윈워시)</p>
-      <p><span class="br">건조 · 의류관리</span><br>트롬 히트펌프 건조기, <b>스타일러</b>(무빙행어 방식), 슈케어·슈케이스(신발관리·전시)</p>
-      <p><span class="br">청소기</span><br>코드제로 A9·올인원타워, 로봇청소기 R5(스팀 물걸레), 로보킹 AI</p>
-      <p><span class="br">청정 · 가습 · 제습</span><br>퓨리케어 360˚·에어로타워·에어로퍼니처, <b>하이드로타워 정수 가습기</b>, 휘센 듀얼인버터 제습기</p>
-      <p><span class="br">기타</span><br><b>틔운·틔운 미니</b>(식물생활가전). 홈브루는 2026년 초 단종</p>
-    </div>
-    <div>
-      <h4>삼성 — 비스포크 AI · 제트</h4>
-      <p><span class="br">세탁</span><br>비스포크 AI 세탁기(드럼), <b>비스포크 AI 콤보</b>(일체형 — 2026년형 세탁~건조 69분, 7형 스크린), 그랑데 통버블(통돌이)</p>
-      <p><span class="br">건조 · 의류관리</span><br>비스포크 AI 건조기, <b>어드레서</b>(구 에어드레서, 에어분사 방식), 슈드레서</p>
-      <p><span class="br">청소기</span><br>비스포크 제트 AI(무선스틱), <b>비스포크 AI 스팀</b>(로봇 — 2026년형 퀄컴 칩+3D 센서), 제트봇</p>
-      <p><span class="br">청정 · 제습</span><br>비스포크 큐브 에어 AI, 인버터 제습기(2024년 시장 재진입). <b>단독 가습기는 없음</b></p>
-      <p><span class="br">기타</span><br>식물가전 미참여</p>
-    </div>
-  </div>
-</section>
-
-<!-- 04 에어솔루션 -->
-<section>
-  <div class="sec-head"><span class="sec-num">04</span><h2>에어솔루션</h2></div>
-  <div class="duo">
-    <div>
-      <h4>LG — 휘센</h4>
-      <p><span class="br">에어컨</span><br>2026년형 휘센 AI 오브제컬렉션 — 스탠드 <b>타워</b>(5·7·9)·<b>뷰</b>(5·6, 라인업 확대), 2in1, 벽걸이, <b>이동식</b>. AI콜드프리·AI수면. <b>창문형은 미판매</b>(이동식으로 대응)</p>
-      <p><span class="br">시스템 · 환기</span><br>휘센 시스템에어컨(가정용 멀티·상업용 멀티브이), 환기시스템(구독 품목)</p>
-      <p><span class="br">히트펌프</span><br><b>써마브이(ThermaV)</b> — 유럽 주력 AWHP를 2026년 국내 본격 투입(제주 실증)</p>
-    </div>
-    <div>
-      <h4>삼성 — 무풍</h4>
-      <p><span class="br">에어컨</span><br>2026년형 비스포크 AI <b>무풍콤보 갤러리 프로</b>(스탠드)·무풍콤보 프로 벽걸이. <b>윈도우핏</b>(창문형 일체형) — 창문형은 삼성만 보유</p>
-      <p><span class="br">시스템</span><br>무풍 시스템에어컨(가정용), DVM(상업용)</p>
-      <p><span class="br">히트펌프</span><br><b>한국형 EHS</b>(Eco Heating System)·EHS 올인원(냉방+난방+온수) — 2026년 국내 진출, 써마브이와 직접 격돌</p>
-    </div>
-  </div>
-  <p class="tbl-note">히트펌프 보일러는 2026년 양사가 나란히 국내 주거 시장에 진입한 신규 격전지다 — 유럽에서 검증한 기술(LG)과 시스템에어컨 기반 통합형(삼성)의 대결.</p>
-</section>
-
-<!-- 05 구독·신규 -->
-<section>
-  <div class="sec-head"><span class="sec-num">05</span><h2>구독과 신규 카테고리</h2></div>
-  <div class="duo">
-    <div>
-      <h4>LG</h4>
-      <p><b>LG 구독</b> — 정수기·냉장고·세탁기·워시타워·건조기·스타일러·에어컨·환기·청소기·청정기 등 <b>20종 이상</b>, 3~6년 계약+케어매니저 방문관리. 2024년 매출 약 2조 원(+75%). 2026년 SKS 9종+시그니처 5종 <b>초프리미엄 구독</b> 신설.</p>
-      <p><b>이동형 AI홈 허브 Q9</b> — 국내 정식 출시(이통 3사 채널 포함). CES 2026에서 가사 홈로봇 <b>클로이드(CLOiD)</b> 공개(Q9이 '머리' 역할, 출시 예고 단계).</p>
-    </div>
-    <div>
-      <h4>삼성</h4>
-      <p><b>AI 구독클럽</b>(2024.12~) — 냉장고·세탁기·에어컨·TV·청소기 등 + <b>갤럭시 AI 구독클럽</b>(폰 결합, 2026년 3년형 신설). 2025년 '블루패스'로 AS 패스트트랙·AI 사전케어(10품목 24증상 사전진단) 포함 토탈 케어형 확장.</p>
-      <p><b>볼리(Ballie)</b> — 2020년 CES 공개 후 출시 무기한 연기, 2026년 1월 공식 페이지 삭제(삼성 입장: "출시 예정 소비자 기기가 아닌 혁신 플랫폼"). AI홈 허브 전략은 <b>패밀리허브·7형 스크린 가전</b> 중심으로 전개.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 06 커버리지 -->
-<section class="synth">
-  <div class="sec-head"><span class="sec-num">06</span><h2>커버리지 차이 — 한쪽만 하는 것</h2></div>
-  <p class="thesis">라인업의 구멍과 겹침이 <span>양사의 다음 수</span>를 알려준다.</p>
-
-  <table>
-    <thead><tr><th>구분</th><th>카테고리</th><th>비고</th></tr></thead>
+  <table class="lineup">
+    <thead><tr><th>카테고리</th><th style="color:var(--lg)">LG</th><th style="color:var(--sg)">삼성</th></tr></thead>
     <tbody>
-      <tr><td class="c-lg">LG만</td><td>식물가전(틔운) · 가습기(하이드로타워) · 이동식 에어컨 · 상용화된 이동형 AI허브(Q9) · 환기시스템(소비자향)</td><td>삼성 볼리는 출시 좌초 — 홈로봇 상용화는 현재 LG 단독</td></tr>
-      <tr><td class="c-sg">삼성만</td><td>창문형 에어컨(윈도우핏) · 스크린 냉장고(패밀리허브) · 멀티조리기(큐커) · 갤럭시 결합 구독</td><td>모바일 결합은 LG가 휴대폰 철수로 불가능한 영역</td></tr>
-      <tr><td>비대칭 해소</td><td>정수기(삼성 2026 얼음정수기까지 확장) · 제습기(삼성 2024 재진입) · 히트펌프 보일러(2026 동시 진출) · 일체형 세탁건조기 · 신발관리기</td><td>단, 정수기 사업모델은 다름 — LG 방문케어 구독 vs 삼성 셀프필터 판매</td></tr>
-      <tr><td>접은 것</td><td class="c-lg">LG: 홈브루(2026 단종), EV충전기(2025 철수)</td><td class="c-sg">삼성: 볼리(무기한 연기), 셰프컬렉션·그랑데(브랜드 통합)</td></tr>
+      <tr class="grp"><td colspan="3">주방가전</td></tr>
+      <tr><td>냉장고</td><td><span class="yes">●</span>디오스 AI 오브제컬렉션 — 4도어(무드업)·양문형(매직스페이스)·컨버터블·키친핏 + <b>스템</b> 직수 냉장고 <span class="new">2025 신설</span></td><td><span class="yes">●</span>비스포크 AI — 4도어(키친핏 맥스)·양문형·1도어 조합형 + <b>패밀리허브</b>(스크린 냉장고는 삼성만)</td></tr>
+      <tr><td>김치냉장고</td><td><span class="yes">●</span>디오스 김치톡톡(스탠드·뚜껑형), 2026년형 AI 맞춤보관</td><td><span class="yes">●</span>비스포크 AI 김치플러스(스탠드·뚜껑형), 메탈쿨링</td></tr>
+      <tr><td>오븐 · 전자레인지</td><td><span class="yes">●</span>디오스 광파오븐, 전자레인지</td><td><span class="yes">●</span>비스포크 AI 오븐, 전자레인지</td></tr>
+      <tr><td>멀티조리기</td><td><span class="no">✕ <small>대응 제품 없음</small></span></td><td><span class="yes">●</span>비스포크 큐커</td></tr>
+      <tr><td>인덕션·전기레인지</td><td><span class="yes">●</span>디오스 인덕션(3구·와이드존)</td><td><span class="yes">●</span>비스포크 AI 인덕션</td></tr>
+      <tr><td>식기세척기</td><td><span class="yes">●</span>디오스(트루스팀), 빌트인·프리스탠딩</td><td><span class="yes">●</span>비스포크 AI(AI 사전케어 대상)</td></tr>
+      <tr><td>정수기</td><td><span class="yes">●</span>퓨리케어 냉온·얼음정수기 — 2009년 렌탈 원조, 방문 케어 구독형</td><td><span class="yes">●</span>비스포크 AI 정수기·얼음정수기 <span class="new">2026 확장</span> — 셀프 필터교체 판매형</td></tr>
+      <tr><td>럭셔리 빌트인</td><td><span class="yes">●</span>시그니처 키친 스위트(2026 전용 구독 신설)</td><td><span class="yes">●</span>인피니트 라인 + 데이코</td></tr>
+      <tr><td>수제맥주제조기</td><td><span class="no">✕ <small>홈브루 2026년 초 단종</small></span></td><td><span class="no">✕ <small>미진출</small></span></td></tr>
+
+      <tr class="grp"><td colspan="3">리빙 · 세탁</td></tr>
+      <tr><td>세탁기</td><td><span class="yes">●</span>트롬 드럼·통돌이·미니워시, <b>워시타워</b>(타워형)</td><td><span class="yes">●</span>비스포크 AI 드럼, 그랑데 통버블(통돌이)</td></tr>
+      <tr><td>일체형 세탁건조기</td><td><span class="yes">●</span>트롬 워시콤보</td><td><span class="yes">●</span>비스포크 AI 콤보(세탁~건조 69분)</td></tr>
+      <tr><td>건조기</td><td><span class="yes">●</span>트롬 히트펌프 건조기</td><td><span class="yes">●</span>비스포크 AI 건조기</td></tr>
+      <tr><td>의류관리기</td><td><span class="yes">●</span>트롬 스타일러 — 무빙행어 방식</td><td><span class="yes">●</span>비스포크 AI 어드레서 — 에어분사 방식</td></tr>
+      <tr><td>신발관리기</td><td><span class="yes">●</span>슈케어 + 슈케이스(보관·전시)</td><td><span class="yes">●</span>비스포크 슈드레서</td></tr>
+      <tr><td>무선스틱 청소기</td><td><span class="yes">●</span>코드제로 A9·올인원타워</td><td><span class="yes">●</span>비스포크 제트 AI</td></tr>
+      <tr><td>로봇청소기</td><td><span class="yes">●</span>로봇청소기 R5(스팀 물걸레), 로보킹 AI</td><td><span class="yes">●</span>비스포크 AI 스팀(퀄컴 칩+3D 센서), 제트봇</td></tr>
+      <tr><td>공기청정기</td><td><span class="yes">●</span>퓨리케어 360˚·에어로타워·에어로퍼니처</td><td><span class="yes">●</span>비스포크 큐브 에어 AI</td></tr>
+      <tr><td>가습기</td><td><span class="yes">●</span>퓨리케어 하이드로타워(정수 가습), 자연기화식</td><td><span class="no">✕ <small>단독 가습기 없음</small></span></td></tr>
+      <tr><td>제습기</td><td><span class="yes">●</span>휘센 듀얼인버터 제습기</td><td><span class="yes">●</span>인버터 제습기(2024 재진입)</td></tr>
+      <tr><td>식물생활가전</td><td><span class="yes">●</span>틔운·틔운 미니</td><td><span class="no">✕ <small>미진출</small></span></td></tr>
+      <tr><td>안마의자</td><td><span class="yes">●</span>힐링미 오브제컬렉션(구독·케어십 포함)</td><td><span class="no">✕ <small>미진출 (바디프랜드·세라젬 영역)</small></span></td></tr>
+      <tr><td>홈 뷰티기기</td><td><span class="no">✕ <small>프라엘 브랜드를 2025.6 LG생활건강에 양도</small></span></td><td><span class="no">✕ <small>미진출</small></span></td></tr>
+
+      <tr class="grp"><td colspan="3">에어솔루션</td></tr>
+      <tr><td>스탠드·벽걸이 에어컨</td><td><span class="yes">●</span>휘센 AI 오브제컬렉션 — 타워(5·7·9)·뷰(5·6)·2in1·벽걸이</td><td><span class="yes">●</span>비스포크 AI 무풍콤보 갤러리 프로·무풍콤보 프로 벽걸이</td></tr>
+      <tr><td>창문형 에어컨</td><td><span class="no">✕ <small>이동식으로 대응</small></span></td><td><span class="yes">●</span>무풍에어컨 윈도우핏(실내·실외기 일체)</td></tr>
+      <tr><td>이동식 에어컨</td><td><span class="yes">●</span>휘센 이동식</td><td><span class="no">✕ <small>미판매</small></span></td></tr>
+      <tr><td>시스템에어컨</td><td><span class="yes">●</span>휘센 가정용 멀티·상업용 멀티브이</td><td><span class="yes">●</span>무풍 시스템에어컨·DVM</td></tr>
+      <tr><td>환기시스템</td><td><span class="yes">●</span>휘센 환기시스템(구독 품목)</td><td><span class="no">✕ <small>소비자향 단독 제품 없음</small></span></td></tr>
+      <tr><td>히트펌프 보일러</td><td><span class="yes">●</span>써마브이(ThermaV) <span class="new">2026 국내 투입</span></td><td><span class="yes">●</span>한국형 EHS·EHS 올인원 <span class="new">2026 국내 투입</span></td></tr>
+      <tr><td>가스보일러</td><td><span class="no">✕ <small>미진출 (경동나비엔·귀뚜라미 영역)</small></span></td><td><span class="no">✕ <small>미진출</small></span></td></tr>
+
+      <tr class="grp"><td colspan="3">구독 · 신규</td></tr>
+      <tr><td>가전 구독</td><td><span class="yes">●</span>LG 구독 — 20종 이상, 방문 케어형, 2024년 매출 약 2조 원. 2026년 SKS·시그니처 초프리미엄 구독 신설</td><td><span class="yes">●</span>AI 구독클럽(2024.12~) — 블루패스·AI 사전케어 결합</td></tr>
+      <tr><td>모바일 결합 구독</td><td><span class="no">✕ <small>휴대폰 사업 철수(2021)로 불가</small></span></td><td><span class="yes">●</span>갤럭시 AI 구독클럽(2026 3년형 신설)</td></tr>
+      <tr><td>이동형 AI 홈로봇</td><td><span class="yes">●</span>Q9 정식 출시 + 가사 로봇 클로이드 공개(출시 예고)</td><td><span class="no">✕ <small>볼리 출시 무기한 연기(2026.1 공식 페이지 삭제)</small></span></td></tr>
+
+      <tr class="grp"><td colspan="3">둘 다 하지 않는 카테고리 (전문 업체 영역)</td></tr>
+      <tr><td>헤어드라이어·헤어기기</td><td><span class="no">✕</span></td><td><span class="no">✕ <small>다이슨·유닉스 등 전문 업체 영역</small></span></td></tr>
+      <tr><td>전기밥솥</td><td><span class="no">✕ <small>과거 진출 후 철수</small></span></td><td><span class="no">✕ <small>쿠쿠·쿠첸 양강 체제</small></span></td></tr>
+      <tr><td>전기면도기·이미용 소형</td><td><span class="no">✕</span></td><td><span class="no">✕ <small>필립스·브라운 등 영역</small></span></td></tr>
+      <tr><td>커피머신·전기포트 등 소형 주방가전</td><td><span class="no">✕ <small>단독 라인업 없음</small></span></td><td><span class="no">✕ <small>단독 라인업 없음</small></span></td></tr>
     </tbody>
   </table>
+  <p class="tbl-note">
+    '둘 다 하지 않는' 그룹의 공통점: 단가가 낮고 교체 주기가 짧은 <b>소형가전</b>이다. 양사 모두 대형가전의 프리미엄·구독 모델에 집중하면서
+    소형가전은 전문 업체(쿠쿠·다이슨·필립스 등)에 내준 구조가 유지되고 있다. 반대로 양사가 동시에 새로 들어간 곳(히트펌프 보일러)은
+    단가가 높고 설치·유지관리가 붙는 영역 — 진입·철수의 기준이 '가격대와 서비스 접점'임을 보여준다.
+  </p>
+</section>
 
-  <div class="grid3" style="margin-top:34px">
-    <div class="pt"><h5>LG의 라인업 논리</h5><p>기기 판매를 <b>구독·케어 서비스</b>로 전환하는 것이 축이다. 정수기→가전 전체→초프리미엄(SKS)으로 구독 대상을 넓혀 왔고, 신규 카테고리(틔운·Q9)도 케어 접점을 늘리는 방향이다.</p></div>
-    <div class="pt"><h5>삼성의 라인업 논리</h5><p><b>스크린과 연결</b>이 축이다. 패밀리허브·7형 스크린 가전·갤럭시 결합 구독까지, 가전을 삼성 생태계의 디스플레이 접점으로 만드는 방향. 큐커·윈도우핏 같은 니치 기기도 SmartThings 연결이 전제다.</p></div>
+<!-- 03 분석 -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">03</span><h2>라인업이 말하는 것</h2></div>
+  <p class="thesis">라인업의 구멍과 겹침이 <span>양사의 다음 수</span>를 알려준다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>LG의 라인업 논리</h5><p>기기 판매를 <b>구독·케어 서비스</b>로 전환하는 것이 축이다. 정수기→가전 전체→초프리미엄(SKS)으로 구독 대상을 넓혀 왔고, 안마의자·틔운·Q9 같은 신규 카테고리도 케어 접점을 늘리는 방향이다. 뷰티기기(프라엘)를 LG생활건강에 넘긴 것도 '기기+방문케어'로 묶이지 않는 품목의 정리로 읽힌다.</p></div>
+    <div class="pt"><h5>삼성의 라인업 논리</h5><p><b>스크린과 연결</b>이 축이다. 패밀리허브·7형 스크린 가전·갤럭시 결합 구독까지, 가전을 삼성 생태계의 디스플레이 접점으로 만드는 방향. 큐커·윈도우핏 같은 니치 기기도 SmartThings 연결이 전제다. 가습기·안마의자처럼 연결 가치가 낮은 단품에는 들어가지 않는다.</p></div>
     <div class="pt"><h5>겹치는 미래</h5><p>히트펌프(써마브이 vs EHS)와 AI 구독(LG 구독 vs AI 구독클럽)에서 정면 충돌한다. 전자는 B2B 공조 전쟁의 주거판이고, 후자는 하드웨어 마진 하락을 반복 매출로 메우려는 같은 답이다.</p></div>
   </div>
 
   <footer>
     <b>기준·출처</b> — 2026년 국내 판매 기준. 공식 사이트(lge.co.kr, samsung.com/sec)는 크롤링 제한으로, 양사 공식 뉴스룸 보도자료(2026년형 신제품 발표)·공식 스토어 페이지·언론 보도로 교차 확인:
-    LG전자 뉴스룸(2026년형 휘센 뷰, 김치냉장고 AI 맞춤보관, 스템 냉장고, 하이드로타워, 구독 확대), 전자신문(SKS·시그니처 구독, 2026),
-    삼성전자 뉴스룸(2026년형 AI 무풍, 비스포크 AI 콤보·AI 스팀·김치플러스·윈도우핏, 빅스비 적용 AI 가전, AI 구독클럽), 한국경제(비스포크 AI 얼음정수기, 2026),
+    LG전자 뉴스룸(2026년형 휘센 뷰, 김치냉장고 AI 맞춤보관, 스템 냉장고, 하이드로타워, 구독 확대), LG전자 공식몰(힐링미 안마의자·구독), 전자신문(SKS·시그니처 구독, 2026),
+    머니투데이(프라엘 브랜드 LG생활건강 양수, 2025.6), 삼성전자 뉴스룸(2026년형 AI 무풍, 비스포크 AI 콤보·AI 스팀·김치플러스·윈도우핏, 빅스비 적용 AI 가전, AI 구독클럽), 한국경제(비스포크 AI 얼음정수기, 2026),
     머니투데이·이투데이(히트펌프 국내 격돌, 2026), AI타임스·오토데일리(볼리 연기, 2026), elec4(Q9 출시)·더구루(클로이드).<br>
-    <b>유의</b> — 세부 모델 구성(시리즈·평형·용량)은 시즌 중 변동될 수 있다. 볼리 관련은 2026년 초 보도 기준이며 삼성의 공식 입장("혁신 플랫폼 활용")을 병기했다. 브랜드 연차는 트롬 2002·휘센 2000·디오스 1998 출시 기준.
+    <b>유의</b> — 세부 모델 구성(시리즈·평형·용량)은 시즌 중 변동될 수 있다. '둘 다 하지 않는' 카테고리는 국내 소비자향 단독 제품 기준이며(B2B·부품·해외 시장 제외), 과거 진출 이력이 있는 품목(밥솥 등)은 철수 상태를 기준으로 표기했다. 볼리 관련은 2026년 초 보도 기준이며 삼성의 공식 입장("혁신 플랫폼 활용")을 병기했다.
   </footer>
 </section>
 
