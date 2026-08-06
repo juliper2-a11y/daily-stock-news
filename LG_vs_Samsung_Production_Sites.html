@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>가전 생산거점 이력 비교 — LG 창원 vs 삼성 수원→광주</title>
+<style>
+:root{
+  --paper:#E9ECEF; --paper-2:#F4F6F7; --ink:#0B1118; --steel:#3E5166;
+  --rule:#C3CBD2; --lg:#D10049; --sg:#1B4AE0; --amber:#C97800; --ok:#148A54; --bad:#B3261E;
+  --serif:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; --sans:'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',system-ui,sans-serif; --mono:'Malgun Gothic','맑은 고딕',Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 22px 110px}
+
+header.hero{padding:74px 0 40px;border-bottom:2px solid var(--ink)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--steel);margin-bottom:24px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(32px,6vw,56px);line-height:1.18;margin:0 0 18px;letter-spacing:-.01em}
+h1 em{font-style:normal;color:var(--lg)} h1 strong{font-weight:700;color:var(--sg)}
+.standfirst{font-size:16px;max-width:62ch;color:#16222E}
+
+section{padding-top:60px}
+.sec-head{display:flex;align-items:baseline;gap:15px;margin-bottom:6px}
+.sec-num{font-family:var(--mono);font-size:12px;color:var(--steel);letter-spacing:.14em}
+h2{font-family:var(--serif);font-size:clamp(23px,4vw,32px);font-weight:700;margin:0}
+.sec-sub{color:var(--steel);font-size:14px;margin:0 0 26px;max-width:64ch}
+h3{font-family:var(--serif);font-size:19px;margin:34px 0 10px;font-weight:700}
+p{margin:0 0 14px}
+
+.correct{border:1px solid var(--amber);background:#F7F1E7;padding:18px 20px;margin:0 0 30px}
+.correct .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:8px}
+.correct p{font-size:14.5px;margin:0}
+.correct b{font-weight:700}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:2px solid var(--ink);margin-top:8px}
+.duo > div{padding:18px 20px;background:var(--paper-2);border-bottom:1px solid var(--rule)}
+.duo > div:first-child{border-right:1px solid var(--rule);border-top:3px solid var(--lg)}
+.duo > div:last-child{border-top:3px solid var(--sg)}
+.duo h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px}
+.duo > div:first-child h4{color:var(--lg)} .duo > div:last-child h4{color:var(--sg)}
+.duo p{font-size:13.8px;margin:0 0 8px} .duo p:last-child{margin:0}
+.duo b{font-weight:700}
+
+table{width:100%;border-collapse:collapse;margin-top:22px;font-size:13.3px}
+th,td{border-bottom:1px solid var(--rule);padding:10px 8px;text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel);font-weight:700;border-bottom:1px solid var(--ink)}
+td:first-child{font-family:var(--mono);font-size:11.5px;white-space:nowrap;color:var(--steel)}
+.c-lg{color:var(--lg)} .c-sg{color:var(--sg)} .c-ok{color:var(--ok)} .c-bad{color:var(--bad)}
+.tbl-note{font-size:12.5px;color:var(--steel);margin-top:10px}
+.est{color:var(--amber);font-size:11px;font-family:var(--mono)}
+
+.metric{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0 10px}
+.metric div{border-top:2px solid var(--ink);padding-top:10px}
+.metric .n{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1.1}
+.metric .k{font-size:12.5px;color:var(--steel);margin-top:4px}
+.metric .n.lg{color:var(--lg)} .metric .n.sg{color:var(--sg)}
+
+.thesis{font-family:var(--serif);font-size:clamp(19px,3vw,24px);line-height:1.6;margin:0 0 28px;max-width:40ch}
+.thesis span{color:var(--lg)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pt{border-top:2px solid var(--ink);padding-top:12px}
+.pt h5{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;font-weight:700}
+.pt p{margin:0;font-size:13.4px;color:#16222E}
+
+.synth{margin-top:66px;border-top:2px solid var(--ink);padding-top:44px}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--steel);line-height:1.8}
+footer b{font-weight:700;color:#202E3A}
+
+@media(max-width:720px){
+  .duo{grid-template-columns:1fr}
+  .duo > div:first-child{border-right:none}
+  .duo > div:last-child{border-top:3px solid var(--sg)}
+  .metric,.grid3{grid-template-columns:1fr;gap:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Production Sites History · 1969–2026 · 국내 마더팩토리 · 해외 이전 · 관세 재배치</div>
+  <h1><em>창원</em>은 50년을 지켰고<br><strong>광주</strong>는 두 번 옮겨 담았다</h1>
+  <p class="standfirst">
+    LG 가전의 국내 거점은 1976년부터 지금까지 창원 하나다 — 성격을 바꾼 적이 없다.
+    삼성 가전은 수원에서 태어나 2000년대 초 광주로 옮겨졌고, 2010년대 중반부터는
+    광주의 볼륨 라인이 다시 베트남·멕시코로 빠져나가는 중이다.
+    두 회사 모두 볼륨존은 해외에서 만든다. 갈라지는 것은 <b>국내 거점에 부여한 역할</b>이다 —
+    LG 창원은 전 세계 공장이 복제하는 '원본'이고, 삼성 광주는 라인이 드나드는 '조정 변수'에 가까워졌다.
+  </p>
+</header>
+
+<!-- 00 정정 -->
+<section>
+  <div class="sec-head"><span class="sec-num">00</span><h2>먼저 바로잡을 것</h2></div>
+  <div class="correct">
+    <span class="lbl">Correction — "LG는 창원에서만 100% 생산한다"</span>
+    <p><b>사실이 아니다.</b> LG 가전도 13개국 26개 생산기지를 돌리며, 글로벌 볼륨존(중저가 대량 물량)의
+    다수는 하이퐁·인도·태국·멕시코·폴란드 등 해외에서 만든다. 정확한 명제는 이것이다 —
+    <b>국내 판매용 주력·프리미엄 제품과 신제품 초도 생산은 창원에 집중되고, 창원이 전 세계 공장의
+    공정·품질 표준을 만드는 마더팩토리다.</b> '창원 100%'가 아니라 '창원이 원본'이 맞다.
+    대칭으로 "삼성 광주 = 프리미엄 전용"도 절반만 맞다 — 광주는 여전히 냉장고·세탁기·에어컨 볼륨 일부를
+    생산하며, 정확히는 '프리미엄만 남기는 방향으로 축소 중'인 거점이다.</p>
+  </div>
+</section>
+
+<!-- 01 국내 거점 -->
+<section>
+  <div class="sec-head"><span class="sec-num">01</span><h2>국내 거점의 이력 — 한 곳을 지킨 회사, 옮겨 담은 회사</h2></div>
+  <p class="sec-sub">국내 가전 생산기지는 양사 모두 사실상 하나다. 그 하나에 쌓인 시간이 다르다.</p>
+
+  <div class="duo">
+    <div>
+      <h4>LG — 창원, 1976~현재 (50년)</h4>
+      <p><b>1976</b> 금성사 창원공장 준공. 이후 반세기 동안 가전 생산기지라는 성격을 바꾼 적이 없다.</p>
+      <p><b>1990s~</b> 모터·컴프레서 부품 조직을 같은 부지에 내재화 — 훗날 연 6,000만 대 부품 사업의 뿌리.</p>
+      <p><b>2011–2017</b> 세탁기R&amp;D센터, 시스템에어컨연구소, 창원R&amp;D센터(연구원 1,500명)를 라인 옆에 차례로 건립 —
+      개발과 생산의 물리적 거리 제거.</p>
+      <p><b>2017–2024</b> 총 8,000억 원 투입, 창원1사업장 스마트파크 전환. 냉장고 58종 혼류 생산, 13초당 1대.</p>
+      <p><b>2022</b> WEF 등대공장 선정(국내 가전업계 최초). 창원의 공정 표준을 26개 해외 기지로 확산하는
+      '원본 공장' 역할 공식화.</p>
+    </div>
+    <div>
+      <h4>삼성 — 수원 → 광주, 두 번의 이식</h4>
+      <p><b>1969–1974</b> 수원에서 출발 — 삼성전자 창립(1969), 냉장고 생산 개시(1974). 가전의 고향은 수원이다.</p>
+      <p><b>1989</b> 삼성광주전자(광주전자) 설립 — 수도권 과밀 해소·지방 이전 흐름 속의 제2 거점.</p>
+      <p><b>1999</b> 냉장고·모터·컴프레서 사업을 광주로 이관.</p>
+      <p><b>2003–2004</b> <b>1차 이식</b> — 수원의 세탁기 4개 라인·에어컨 17개 라인을 광주로 이전.
+      수원은 R&amp;D·기획 중심으로 전환, 광주가 국내 유일의 백색가전 생산기지가 된다.</p>
+      <p><b>2011</b> 삼성전자에 흡수합병 — '광주사업장(그린시티)'으로.</p>
+      <p><b>2016~</b> <b>2차 이식의 시작</b> — "광주를 프리미엄 가전 기지로 육성"을 선언하며
+      저가 라인의 해외 이전을 공식화. 이후 볼륨 라인이 베트남·멕시코로 단계적으로 빠져나간다.</p>
+    </div>
+  </div>
+  <p class="tbl-note">같은 '국내 단일 거점'이지만 방향이 반대다 — 창원은 기능(부품→R&amp;D→스마트공장)이 계속 <b>쌓이는</b> 곳이었고, 광주는 라인이 들어왔다(2003) <b>나가는</b>(2016~) 곳이 됐다.</p>
+</section>
+
+<!-- 02 해외 거점 연대기 -->
+<section>
+  <div class="sec-head"><span class="sec-num">02</span><h2>해외 거점의 연대기 — 같은 방향, 다른 속도</h2></div>
+  <p class="sec-sub">해외 생산 자체는 양사 모두 40년 이력이다. 차이는 '무엇을 내보냈고 무엇을 남겼는가'에 있다.</p>
+
+  <table>
+    <thead><tr><th>시기</th><th style="color:var(--lg)">LG (금성사→LG전자)</th><th style="color:var(--sg)">삼성전자 생활가전</th></tr></thead>
+    <tbody>
+      <tr><td>1982</td><td><b>미국 헌츠빌 공장</b> — 한국 기업 최초의 미국 현지 생산. 해외 생산의 효시</td><td>—</td></tr>
+      <tr><td>1980s~90s</td><td>멕시코(몬테레이 냉장고 — 북미 공급), 인도 노이다(1997), 중국·동남아 순차 진출</td><td>멕시코(케레타로 등 북미 공급), 중국·태국·인도 순차 진출 <span class="est">(세부 연도 추정)</span></td></tr>
+      <tr><td>2000s</td><td>폴란드 브로츠와프 가전 단지 등 유럽 거점 구축</td><td>2009 폴란드 <b>브롱키 공장 인수</b>(아미카) — 유럽 가전 거점 확보</td></tr>
+      <tr><td>2003–04</td><td>— (창원 유지)</td><td class="c-sg">국내 재배치: 수원 → 광주 (해외가 아닌 국내 이동)</td></tr>
+      <tr><td>2015–16</td><td>2015 베트남 <b>하이퐁 캠퍼스</b> 통합 출범 — 분산돼 있던 베트남 생산을 한 곳에 집적</td><td>2016 베트남 호치민 <b>SEHC</b> 가동 + 광주 세탁기 라인 베트남 이전 — "광주는 프리미엄, 볼륨은 해외" 공식화</td></tr>
+      <tr><td>2018</td><td class="c-lg">세이프가드 대응 — 테네시 클락스빌 세탁기 공장 가동(12월)</td><td class="c-sg">세이프가드 대응 — 사우스캐롤라이나 뉴베리 세탁기 공장 가동(1월, 발효 열흘 전 선제 가동)</td></tr>
+      <tr><td>2019–22</td><td>테네시에 건조기 라인 추가(2022), 2023 테네시 WEF 등대공장(한국 기업 해외 공장 최초)</td><td>SEHC·해외 거점 중심의 볼륨 생산 체제 정착</td></tr>
+      <tr><td>2024</td><td>창원 스마트파크 완성. 인도법인 IPO 추진(2025 상장) — 신흥국 거점을 자본시장에서 독립시키는 실험</td><td class="c-sg">광주 구형 냉장고 2개 라인 멕시코 이전 결정 — 협력사 매출 30~90% 감소·1,000명+ 고용 축소 전망. 대신 일체형 세탁건조기·시스템에어컨을 광주에 배치</td></tr>
+      <tr><td>2025–26</td><td class="c-lg">관세 국면: 테네시를 세탁기·건조기 넘어 냉장고·오븐까지 <b>멀티 제품 기지로 확장</b> 검토</td><td class="c-sg">관세 국면: 멕시코 건조기 물량 뉴베리 이전 검토 + 저부가 제품 <b>ODM 외주 확대</b>·비주력 해외 공장 정리 검토</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">1980~90년대 진출 연도 일부는 자료마다 차이가 있어 (추정) 표기. 핵심 대비는 2015년 이후다 — 같은 '해외 볼륨 이전'을 LG는 <b>국내 거점을 키우면서</b>(창원 8,000억 투자와 동시 진행) 했고, 삼성은 <b>국내 거점을 비우면서</b>(광주 라인 반출과 동시 진행) 했다.</p>
+</section>
+
+<!-- 03 현재 지도 -->
+<section>
+  <div class="sec-head"><span class="sec-num">03</span><h2>현재의 거점 지도 — 역할로 본 포트폴리오</h2></div>
+  <p class="sec-sub">국가·공장 목록보다 중요한 것은 각 거점에 부여된 역할이다.</p>
+
+  <div class="metric">
+    <div><div class="n lg">13개국 26곳</div><div class="k">LG 생산기지 — 창원 공정 표준을 확산하는 구조 (회사 발표)</div></div>
+    <div><div class="n sg">8~9개국</div><div class="k">삼성 생활가전 거점 — 광주 + 베트남·멕시코·폴란드·인도 등 (언론 종합, 추정)</div></div>
+    <div><div class="n lg">2곳</div><div class="k">WEF 등대공장 (창원·테네시) — 삼성 가전은 아직 없음</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>역할</th><th style="color:var(--lg)">LG</th><th style="color:var(--sg)">삼성</th></tr></thead>
+    <tbody>
+      <tr><td>마더팩토리</td><td><b>창원</b> — 프리미엄·초도 생산 + 부품 + R&amp;D + 공정 표준의 원본</td><td><b>광주</b> — 프리미엄 잔류 기지. 부품(모터·컴프레서)·금형은 유지하되 볼륨 라인은 축소 중</td></tr>
+      <tr><td>북미 대응</td><td>테네시(세탁기·건조기 → 품목 확장 검토), 멕시코 몬테레이(냉장고)</td><td>뉴베리(세탁기 전용), 멕시코 케레타로(냉장고·건조기 등)</td></tr>
+      <tr><td>유럽 대응</td><td>폴란드 브로츠와프 등</td><td>폴란드 브롱키</td></tr>
+      <tr><td>아시아 볼륨존</td><td>하이퐁(베트남), 태국·인도네시아 <span class="est">(추정)</span></td><td>SEHC(베트남), 태국 <span class="est">(추정)</span></td></tr>
+      <tr><td>신흥국 시장형</td><td>인도 노이다·푸네 — 2025 인도법인 IPO로 독립 강화</td><td>인도 첸나이 <span class="est">(추정)</span></td></tr>
+      <tr><td>조정 변수</td><td>해외 볼륨 거점 간 물량 조정 (창원은 불변)</td><td class="c-sg">광주 자체가 조정 대상에 포함 — 라인 반출입이 반복</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">개별 공장의 생산 품목은 시기에 따라 바뀌며 회사가 전 목록을 공시하지 않는다 — 국가·역할 수준의 정리이고, (추정) 표기는 언론 보도 기반. 구도 자체(마더팩토리 원본 vs 조정 변수)는 양사 공식 발표·복수 보도로 교차 확인된다.</p>
+</section>
+
+<!-- 04 해석 -->
+<section>
+  <div class="sec-head"><span class="sec-num">04</span><h2>같은 분산, 다른 문법</h2></div>
+  <p class="sec-sub">"둘 다 해외에서 만든다"에서 멈추면 아무것도 설명되지 않는다. 분산의 문법이 다르다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>LG — 복제의 분산</h5><p>창원에서 완성한 공정·품질·자동화 표준을 26개 기지에 이식한다. 해외 공장은 창원의 사본이고, 부품도 창원 축의 7개 거점에서 글로벌 공급한다. 국내 거점이 강해질수록 해외 거점도 강해지는 구조.</p></div>
+    <div class="pt"><h5>삼성 — 최적화의 분산</h5><p>제품별로 인건비·관세·물류가 가장 싼 곳을 찾아 라인을 옮긴다. 광주도 그 계산의 예외가 아니어서, 2003년에 라인을 받았던 곳이 2016년부터는 내보내는 곳이 됐다. 유연하지만, 거점에 노하우가 쌓일 시간이 짧다.</p></div>
+    <div class="pt"><h5>협력사 생태계의 차이</h5><p>창원형 집적은 부품·협력사 생태계를 한 곳에 묶어 함께 자란다. 광주형 조정은 라인이 빠질 때마다 협력사 매출이 30~90% 급감하는 충격(2024 멕시코 이전 사례)을 남긴다 — 이전 비용의 상당 부분은 재무제표 밖 생태계가 치른다.</p></div>
+  </div>
+
+  <p style="margin-top:26px;font-size:13.8px">
+    이 문법 차이는 관세 국면에서 그대로 재현됐다. 2018년 같은 해에 지은 미국 공장을,
+    2025년 관세 파도에서 <b>LG는 품목을 늘려 키우는 쪽</b>(테네시 멀티 기지화)으로,
+    <b>삼성은 물량을 돌리고 몸집을 줄이는 쪽</b>(재배치+ODM+거점 정리)으로 썼다.
+    복제 모델은 거점을 키우는 결정이 쉽고, 최적화 모델은 거점을 줄이는 결정이 쉽다 —
+    각자 자기 문법대로 움직인 것이다.
+  </p>
+</section>
+
+<!-- 05 종합 -->
+<section class="synth">
+  <div class="sec-head"><span class="sec-num">05</span><h2>종합</h2></div>
+  <p class="thesis">거점 이력이 말해주는 것 — <span>LG는 장소에 축적했고</span>, 삼성은 장소를 계산했다.</p>
+
+  <div class="grid3">
+    <div class="pt"><h5>정확한 한 줄</h5><p>"LG는 창원 100%, 삼성은 해외"가 아니라 — "양사 모두 볼륨은 해외, 프리미엄은 국내. 다만 LG는 국내 거점을 원본으로 키웠고, 삼성은 국내 거점까지 조정 변수로 썼다"가 사실에 맞는 요약이다.</p></div>
+    <div class="pt"><h5>손익과의 연결</h5><p>창원 집적(부품 내재화+개발-생산 밀착)은 LG 가전 이익률(6~9%대)의 구조 요인으로 꼽히고, 삼성 가전의 이익률 부진(0~2%대 추정)에는 거점 이동에 따른 원가·생태계 비용이 겹쳐 있다 — 제조경쟁력 비교 페이지 05장의 성적표와 이어진다.</p></div>
+    <div class="pt"><h5>다음 변곡점</h5><p>관세가 상수가 된 2026년, LG는 '어디를 더 키울까'(테네시·인도), 삼성은 '무엇을 그만 만들까'(ODM·거점 정리)를 고르고 있다. 거점 전략의 다음 라운드는 확장 대 경량화의 대결이다.</p></div>
+  </div>
+
+  <footer>
+    <b>출처</b> — LG전자 공식(국내·해외 사업장, 스마트파크·등대공장 발표), 위키백과 LG전자(헌츠빌 1982), 경인일보·남도일보(수원 라인 광주 이전), 전자신문(2004 생활가전 구조조정, 2016 "광주 프리미엄 기지" 선언), 오마이뉴스·알파경제·네이트뉴스(2024 광주 라인 멕시코 이전·협력사 영향), 프레시안(2024 프리미엄 모델 광주 배치), 매거진한경(2020 광주 생산 확대), 오피니언뉴스(해외 생산 재편·인도), 기존 제조경쟁력 비교 페이지(세이프가드·테네시·뉴베리·2025~26 재배치)와 동일 출처.<br>
+    <b>불확실성</b> — 1980~90년대 해외 진출 연도 일부, 아시아·인도 거점의 현재 생산 품목, 삼성 거점 국가 수(8~9개국)는 (추정) 표기. 양사 모두 전체 공장 목록·거점별 생산량을 공시하지 않아 국가·역할 수준으로 정리했다. LG '13개국 26개 기지'는 회사 발표 인용으로 집계 시점에 따라 달라질 수 있다.
+  </footer>
+</section>
+
+</div>
+</body>
+</html>
