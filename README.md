@@ -1,5 +1,37 @@
 # daily-stock-news
 
+## Apple 뉴스 사이트 (승인한 사람만 접속)
+
+Apple Newsroom 뉴스를 자동 수집해 정적 사이트로 만들고, **Cloudflare Access로 승인된 이메일만 접속**할 수 있게 하는 구성입니다.
+
+### 동작 방식
+
+1. **3시간마다** GitHub Actions가 Apple Newsroom RSS를 수집합니다 (`.github/workflows/apple-news-site.yml`).
+2. `scripts/build_apple_news.py`가 뉴스를 `data/apple_news.json`에 누적 저장하고 `site/index.html`을 생성해 커밋합니다.
+3. Cloudflare Pages가 이 저장소의 `site/` 디렉터리를 자동 배포합니다.
+4. Cloudflare Access가 사이트 앞에서 이메일 인증을 요구합니다 — **허용 목록에 있는 이메일만** 일회용 코드를 받아 접속할 수 있습니다.
+
+### 최초 1회 설정 (Cloudflare, 무료)
+
+1. [Cloudflare](https://dash.cloudflare.com/sign-up) 무료 계정을 만듭니다.
+2. **Workers & Pages → Create → Pages → Connect to Git**에서 이 저장소를 연결합니다.
+   - Production branch: `main`
+   - Build command: (비워두기)
+   - Build output directory: `site`
+3. 배포가 끝나면 `https://<프로젝트명>.pages.dev` 주소가 생깁니다.
+4. **Zero Trust → Access → Applications → Add an application → Self-hosted**를 선택합니다.
+   - Application domain: 위의 `pages.dev` 주소
+   - Policy: Action = **Allow**, Include = **Emails** → 승인할 이메일 주소들을 입력
+5. 저장하면 끝. 이후 사이트 접속 시 이메일 입력 → 허용 목록에 있으면 일회용 코드가 메일로 와서 인증 후 열람합니다.
+
+### 사람 추가/제거
+
+Zero Trust → Access → Applications → 해당 앱 → Policies에서 이메일을 추가하거나 삭제하면 즉시 반영됩니다. (무료 플랜 50명까지)
+
+### 수동 갱신
+
+Actions 탭 → **Apple 뉴스 사이트 갱신** → **Run workflow**.
+
 ## IR 새소식 알림
 
 아래 사이트에 새 항목이 올라오면 자동으로 알림을 받는 GitHub Actions 워크플로우입니다.
